@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_acceleration = 2.0f;
     [SerializeField] float m_rotationVelocity = 5.0f;
     [SerializeField] float jumpForce = 2.0f;
+    Animator anim;
+
+    Ray ray;
+    RaycastHit hit;
 
     private Rigidbody rb;
     private Vector2 moveInput;
@@ -20,11 +25,13 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();   
+
     }
 
     private void Start()
     {
         jump = new Vector3(0.0f, 3.0f, 0.0f);
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -37,7 +44,19 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+
+        ray = GetCameraRay();
+        if (Physics.Raycast(ray, out hit, 1000.0f))
+        {
+            checkCameraRay(hit);
+        }
     }
+
+    private void checkCameraRay(RaycastHit hit)
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hit.point - transform.position), 5 * Time.deltaTime);
+    }
+
     private void FixedUpdate()
     {
         handleMovement();
@@ -46,16 +65,16 @@ public class PlayerController : MonoBehaviour
 
     private void handleMovement()
     {
-        Vector3 moveDirection = transform.forward * moveInput.y;
-        moveDirection += transform.right * moveInput.x;
-        moveDirection.y = 0.0f;
-        moveDirection.Normalize();
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hit.point - transform.position), 5 * Time.deltaTime);
 
-        //movement
-        Vector3 moveVector = moveDirection * m_movementVelocity;
-        moveVector.y = rb.velocity.y; // aplica la gravetat
-        rb.velocity = moveVector;
 
+        if (moveInput.y == 0 && moveInput.x == 0)
+        {
+            anim.SetBool("walk", false);
+        }
+        else{
+            anim.SetBool("walk", true);
+        }
 
         /*Vector3 desiredVelocity = moveDirection * m_movementVelocity;
         Vector3 xAxis = Vector3.ProjectOnPlane(Vector3.right, Vector3.up);
@@ -69,6 +88,8 @@ public class PlayerController : MonoBehaviour
         float newYVelocity = Mathf.MoveTowards(currentYAxis, desiredVelocity.y, m_acceleration);
 
         rb.velocity = new Vector3(newXVelocity, 0.0f, newYVelocity);*/
+
+
     }
     private void handleRotation()
     {
@@ -90,5 +111,9 @@ public class PlayerController : MonoBehaviour
     void OnCollisionStay()
     {
         isGrounded = true;
+    }
+    private Ray GetCameraRay()
+    {
+        return Camera.main.ScreenPointToRay(Input.mousePosition);
     }
 }
