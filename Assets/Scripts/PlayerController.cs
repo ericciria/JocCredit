@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_acceleration = 2.0f;
     [SerializeField] float m_rotationVelocity = 5.0f;
     [SerializeField] float jumpForce = 2.0f;
+    Animator anim;
+
+    Ray ray;
+    RaycastHit hit;
 
     private Rigidbody rb;
     private Vector2 moveInput;
@@ -19,12 +23,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();   
+        rb = GetComponent<Rigidbody>();
+
     }
 
     private void Start()
     {
         jump = new Vector3(0.0f, 3.0f, 0.0f);
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -37,7 +43,19 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+
+        ray = GetCameraRay();
+        if (Physics.Raycast(ray, out hit, 1000.0f))
+        {
+            checkCameraRay(hit);
+        }
     }
+
+    private void checkCameraRay(RaycastHit hit)
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hit.point - transform.position), 5 * Time.deltaTime);
+    }
+
     private void FixedUpdate()
     {
         handleMovement();
@@ -46,15 +64,9 @@ public class PlayerController : MonoBehaviour
 
     private void handleMovement()
     {
-        Vector3 moveDirection = transform.forward * moveInput.y;
-        moveDirection += transform.right * moveInput.x;
-        moveDirection.y = 0.0f;
-        moveDirection.Normalize();
+        transform.position = new Vector3(transform.position.x + moveInput.x, transform.position.y , transform.position.z + moveInput.y);
 
-        //movement
-        Vector3 moveVector = moveDirection * m_movementVelocity;
-        moveVector.y = rb.velocity.y; // aplica la gravetat
-        rb.velocity = moveVector;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hit.point - transform.position), 5 * Time.deltaTime);
 
 
         /*Vector3 desiredVelocity = moveDirection * m_movementVelocity;
@@ -72,23 +84,20 @@ public class PlayerController : MonoBehaviour
     }
     private void handleRotation()
     {
-        Vector3 moveDirection = transform.forward * moveInput.y;
-        moveDirection += transform.right * moveInput.x;
-        moveDirection.y = 0.0f;
-        moveDirection.Normalize();
+        transform.position = new Vector3(transform.position.x + moveInput.x, transform.position.y + moveInput.y, transform.position.z);
 
-        //Rotation
-        if (moveDirection == Vector3.zero)
-        {
-            moveDirection = transform.forward;
-        }
-        Quaternion desiredPosition = Quaternion.LookRotation(moveDirection);
-        Quaternion finalRotation = Quaternion.Slerp(transform.rotation, desiredPosition, m_rotationVelocity * Time.deltaTime);
-        transform.rotation = finalRotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hit.point - transform.position), 5 * Time.deltaTime);
     }
 
     void OnCollisionStay()
     {
         isGrounded = true;
     }
+
+    private Ray GetCameraRay()
+    {
+        return Camera.main.ScreenPointToRay(Input.mousePosition);
+    }
+
+
 }
