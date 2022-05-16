@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();   
 
     }
 
@@ -64,10 +65,16 @@ public class PlayerController : MonoBehaviour
 
     private void handleMovement()
     {
-        transform.position = new Vector3(transform.position.x + moveInput.x, transform.position.y , transform.position.z + moveInput.y);
-
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hit.point - transform.position), 5 * Time.deltaTime);
 
+
+        if (moveInput.y == 0 && moveInput.x == 0)
+        {
+            anim.SetBool("walk", false);
+        }
+        else{
+            anim.SetBool("walk", true);
+        }
 
         /*Vector3 desiredVelocity = moveDirection * m_movementVelocity;
         Vector3 xAxis = Vector3.ProjectOnPlane(Vector3.right, Vector3.up);
@@ -81,6 +88,8 @@ public class PlayerController : MonoBehaviour
         float newYVelocity = Mathf.MoveTowards(currentYAxis, desiredVelocity.y, m_acceleration);
 
         rb.velocity = new Vector3(newXVelocity, 0.0f, newYVelocity);*/
+
+
     }
     private void handleRotation()
     {
@@ -93,11 +102,8 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = true;
     }
-
     private Ray GetCameraRay()
     {
         return Camera.main.ScreenPointToRay(Input.mousePosition);
     }
-
-
 }

@@ -56,7 +56,7 @@ public class BoxCamera : MonoBehaviour
         {
             moure = false;
             Debug.Log("Exiting");
-            camera.transform.SetParent(player);
+            camera.transform.SetParent(player.parent);
 
             Debug.Log(camera.transform.position);
             Debug.Log(target);
