@@ -17,6 +17,7 @@ public class BoxCamera : MonoBehaviour
         step = speed * Time.deltaTime;
         moure = false;
         cameraOnPlayer = true;
+
     }
 
     private void Update()

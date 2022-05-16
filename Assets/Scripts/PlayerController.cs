@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void checkCameraRay(RaycastHit hit)
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hit.point - transform.position), 5 * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(hit.point.x, transform.position.y, hit.point.z) - transform.position), 5 * Time.deltaTime);        
     }
 
     private void FixedUpdate()
@@ -65,9 +65,6 @@ public class PlayerController : MonoBehaviour
 
     private void handleMovement()
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hit.point - transform.position), 5 * Time.deltaTime);
-
-
         if (moveInput.y == 0 && moveInput.x == 0)
         {
             anim.SetBool("walk", false);
