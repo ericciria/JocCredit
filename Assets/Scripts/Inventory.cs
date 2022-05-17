@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    // Start is called before the first frame update
+    PlayerController player;
+    public int maxHealth;
+    public float shootSpeed, shootRate, speed, attack;
+
     void Start()
     {
-        
+        player = gameObject.GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.tag == "Item")
+        {
+            other.gameObject.GetComponent<ItemInfo>(){
+
+            }
+        }
+    }
+
+    public void HealPlayer(int health)
+    {
+        player.health += health;
+        if (player.health > player.maxHealth)
+        {
+            player.health = player.maxHealth;
+        }
+    }
+
+    public void UpdateStats()
+    {
+        player.shootSpeed = player.baseShootSpeed + shootSpeed;
+        player.shootRate = player.baseShootRate + shootRate;
+        player.speed = player.baseSpeed + speed;
+        player.attack = player.baseAttack + attack;
+        player.maxHealth = player.baseMaxHealth + maxHealth;
     }
 }

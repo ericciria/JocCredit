@@ -7,9 +7,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float m_movementVelocity = 10.0f;
-    [SerializeField] float m_acceleration = 2.0f;
-    [SerializeField] float m_rotationVelocity = 5.0f;
     [SerializeField] float jumpForce = 2.0f;
     Animator anim;
 
@@ -21,6 +18,11 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 jump;
     public bool isGrounded;
+
+    public float shootSpeed, shootRate, speed, attack, baseShootSpeed, baseShootRate, baseSpeed, baseAttack;
+    public int baseMaxHealth, maxHealth, health;
+    public gun gun;
+
 
     private void Awake()
     {
@@ -72,27 +74,6 @@ public class PlayerController : MonoBehaviour
         else{
             anim.SetBool("walk", true);
         }
-
-        /*Vector3 desiredVelocity = moveDirection * m_movementVelocity;
-        Vector3 xAxis = Vector3.ProjectOnPlane(Vector3.right, Vector3.up);
-        Vector3 yAxis = Vector3.ProjectOnPlane(Vector3.forward, Vector3.up);
-        float currentXAxis = Vector3.Dot(rb.velocity, xAxis);
-        float currentYAxis = Vector3.Dot(rb.velocity, yAxis);
-
-        float maxSpeedChange = m_acceleration * Time.deltaTime;
-
-        float newXVelocity = Mathf.MoveTowards(currentXAxis, desiredVelocity.x, m_acceleration);
-        float newYVelocity = Mathf.MoveTowards(currentYAxis, desiredVelocity.y, m_acceleration);
-
-        rb.velocity = new Vector3(newXVelocity, 0.0f, newYVelocity);*/
-
-
-    }
-    private void handleRotation()
-    {
-        transform.position = new Vector3(transform.position.x + moveInput.x, transform.position.y + moveInput.y, transform.position.z);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(hit.point - transform.position), 5 * Time.deltaTime);
     }
 
     void OnCollisionStay()

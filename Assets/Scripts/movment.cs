@@ -6,18 +6,21 @@ public class movment : MonoBehaviour
 {
   
     private Vector2 moveInput;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int movementSpeed;
 
-    // Update is called once per frame
     void Update()
     {
+        if (movementSpeed < 2)
+        {
+            movementSpeed = 2;
+        }
+        else if (movementSpeed > 10)
+        {
+            movementSpeed = 10;
+        }
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
-        transform.position = new Vector3(transform.position.x + moveInput.x * Time.deltaTime * 5, transform.position.y, transform.position.z + moveInput.y * Time.deltaTime * 5);
+        transform.position = new Vector3(transform.position.x + moveInput.x * Time.deltaTime * movementSpeed, transform.position.y, transform.position.z + moveInput.y * Time.deltaTime * movementSpeed);
 
     }
 }
