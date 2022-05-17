@@ -11,6 +11,7 @@ public class Item : ScriptableObject
     [SerializeField] private string effect;
     [SerializeField] private Sprite icon;
     [SerializeField] private float speed;
+    [SerializeField] private float shootSpeed;
     [SerializeField] private float fireRate;
     [SerializeField] private float damage;
 
@@ -40,6 +41,13 @@ public class Item : ScriptableObject
         get
         {
             return icon;
+        }
+    }
+    public float ShootSpeed
+    {
+        get
+        {
+            return shootSpeed;
         }
     }
     public float Speed
