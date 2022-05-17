@@ -18,9 +18,7 @@ public class Inventory : MonoBehaviour
     {
         if (other.gameObject.tag == "Item")
         {
-            other.gameObject.GetComponent<ItemInfo>(){
-
-            }
+            other.gameObject.GetComponent<ItemInfo>();
         }
     }
 
