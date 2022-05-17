@@ -75,7 +75,7 @@ public class movment : MonoBehaviour
         cam1.SetActive(false);
 
         
-        transform.position = new Vector3(transform.position.x + moveInput.x * Time.deltaTime * 5, transform.position.y, transform.position.z + moveInput.y * Time.deltaTime * 5);
+        transform.position = new Vector3(transform.position.x + moveInput.x * Time.deltaTime * player.speed, transform.position.y, transform.position.z + moveInput.y * Time.deltaTime * player.speed);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -101,12 +101,12 @@ public class movment : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        float mouseX = Input.GetAxis("Mouse X") * 10;
-        float mouseY = Input.GetAxis("Mouse Y") * 10;
+        float mouseX = Input.GetAxis("Mouse X") * 5;
+        float mouseY = Input.GetAxis("Mouse Y") * 5;
 
         yRotation += mouseX;
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
+        xRotation = Mathf.Clamp(xRotation, -30, 30);
 
         player.transform.eulerAngles = new Vector3(xRotation, yRotation, 0.0f);
     }

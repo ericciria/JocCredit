@@ -14,6 +14,7 @@ public class Item : ScriptableObject
     [SerializeField] private float shootSpeed;
     [SerializeField] private float fireRate;
     [SerializeField] private float damage;
+    [SerializeField] private int health;
 
     public string Name
     {
@@ -69,6 +70,13 @@ public class Item : ScriptableObject
         get
         {
             return damage;
+        }
+    }
+    public int Health
+    {
+        get
+        {
+            return health;
         }
     }
 

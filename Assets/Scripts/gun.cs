@@ -7,12 +7,13 @@ public class gun : MonoBehaviour
 {
     public Transform bulletSpawnPoint;
     public GameObject bulletPrefab;
-    public float bulletSpeed = 10;
     bool cantshoot;
+    private PlayerController player;
 
     private void Start()
     {
         cantshoot = true;
+        player = gameObject.GetComponentInParent<PlayerController>();
     }
     void Update()
     {
@@ -23,8 +24,6 @@ public class gun : MonoBehaviour
             {
                 StartCoroutine(shoot());
             }
-           
-            
         }
     }
 
@@ -32,8 +31,8 @@ public class gun : MonoBehaviour
     {
         cantshoot = false;
         var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
-        yield return new WaitForSeconds(1);
+        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * player.shootSpeed;
+        yield return new WaitForSeconds(1/player.shootRate);
         cantshoot = true;
 
     }
