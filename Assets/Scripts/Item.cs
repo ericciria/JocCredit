@@ -11,8 +11,10 @@ public class Item : ScriptableObject
     [SerializeField] private string effect;
     [SerializeField] private Sprite icon;
     [SerializeField] private float speed;
+    [SerializeField] private float shootSpeed;
     [SerializeField] private float fireRate;
     [SerializeField] private float damage;
+    [SerializeField] private int health;
 
     public string Name
     {
@@ -42,6 +44,13 @@ public class Item : ScriptableObject
             return icon;
         }
     }
+    public float ShootSpeed
+    {
+        get
+        {
+            return shootSpeed;
+        }
+    }
     public float Speed
     {
         get
@@ -61,6 +70,13 @@ public class Item : ScriptableObject
         get
         {
             return damage;
+        }
+    }
+    public int Health
+    {
+        get
+        {
+            return health;
         }
     }
 

@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 jump;
     public bool isGrounded;
-    
-     public playermovement firstperson;
 
     public float shootSpeed, shootRate, speed, attack, baseShootSpeed, baseShootRate, baseSpeed, baseAttack;
     public int baseMaxHealth, maxHealth, health;
@@ -35,7 +33,14 @@ public class PlayerController : MonoBehaviour
         jump = new Vector3(0.0f, 3.0f, 0.0f);
         anim = GetComponent<Animator>();
 
+        baseSpeed = 5;
         speed = baseSpeed;
+        baseAttack = 1;
+        attack = baseAttack;
+        baseShootRate = 1;
+        shootRate = baseShootRate;
+        baseShootSpeed = 5;
+        shootSpeed = baseShootSpeed;
        
     }
 

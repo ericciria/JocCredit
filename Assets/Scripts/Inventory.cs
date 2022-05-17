@@ -11,16 +11,12 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         player = gameObject.GetComponent<PlayerController>();
+        shootSpeed = 0;
+        shootRate = 0;
+        speed = 0;
+        attack = 0;
     }
 
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Item")
-        {
-            other.gameObject.GetComponent<ItemInfo>();
-        }
-    }
 
     public void HealPlayer(int health)
     {
@@ -31,7 +27,46 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UpdateStats()
+    public void UpdateStats(float shootSpeed1, float shootRate1, float speed1, float attack1, int maxHealth1)
+    {
+        shootSpeed += shootSpeed1;
+        shootRate += shootRate1;
+        speed += speed1;
+        attack += attack1;
+        maxHealth += maxHealth1;
+        
+        if (shootRate < 0.4)
+        {
+            shootRate = 0.4f;
+        }
+        else if (shootRate > 10)
+        {
+            shootRate = 10;
+        }
+        if (speed < 0.4)
+        {
+            speed = 0.4f;
+        }
+        else if (speed > 10)
+        {
+            speed = 10;
+        }
+        if (shootSpeed < speed*2)
+        {
+            shootSpeed = speed*2;
+        }
+        if (shootSpeed < 4)
+        {
+            shootSpeed = 4;
+        }
+        else if (shootSpeed > 50)
+        {
+            shootSpeed = 50;
+        }
+        UpdatePlayer(shootSpeed, shootRate, speed, attack, maxHealth);
+    }
+
+    public void UpdatePlayer(float shootSpeed, float shootRate, float speed, float attack, int maxHealth)
     {
         player.shootSpeed = player.baseShootSpeed + shootSpeed;
         player.shootRate = player.baseShootRate + shootRate;
