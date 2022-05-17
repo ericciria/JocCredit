@@ -35,9 +35,16 @@ public class movment : MonoBehaviour
         player = transform.gameObject.GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (movementSpeed < 2)
+        {
+            movementSpeed = 2;
+        }
+        else if (movementSpeed > 10)
+        {
+            movementSpeed = 10;
+        }
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
 

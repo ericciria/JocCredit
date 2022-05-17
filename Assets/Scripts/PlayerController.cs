@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float m_rotationVelocity = 5.0f;
     [SerializeField] float jumpForce = 2.0f;
     
     Animator anim;
@@ -22,6 +21,11 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     
      public playermovement firstperson;
+
+    public float shootSpeed, shootRate, speed, attack, baseShootSpeed, baseShootRate, baseSpeed, baseAttack;
+    public int baseMaxHealth, maxHealth, health;
+    public gun gun;
+
 
     private void Awake()
     {
@@ -72,37 +76,6 @@ public class PlayerController : MonoBehaviour
         else{
             anim.SetBool("walk", true);
         }
-
-        /*Vector3 desiredVelocity = moveDirection * m_movementVelocity;
-        Vector3 xAxis = Vector3.ProjectOnPlane(Vector3.right, Vector3.up);
-        Vector3 yAxis = Vector3.ProjectOnPlane(Vector3.forward, Vector3.up);
-        float currentXAxis = Vector3.Dot(rb.velocity, xAxis);
-        float currentYAxis = Vector3.Dot(rb.velocity, yAxis);
-
-        float maxSpeedChange = m_acceleration * Time.deltaTime;
-
-        float newXVelocity = Mathf.MoveTowards(currentXAxis, desiredVelocity.x, m_acceleration);
-        float newYVelocity = Mathf.MoveTowards(currentYAxis, desiredVelocity.y, m_acceleration);
-
-        rb.velocity = new Vector3(newXVelocity, 0.0f, newYVelocity);*/
-
-
-    }
-    private void handleRotation()
-    {
-        Vector3 moveDirection = transform.forward * moveInput.y;
-        moveDirection += transform.right * moveInput.x;
-        moveDirection.y = 0.0f;
-        moveDirection.Normalize();
-
-        //Rotation
-        if (moveDirection == Vector3.zero)
-        {
-            moveDirection = transform.forward;
-        }
-        Quaternion desiredPosition = Quaternion.LookRotation(moveDirection);
-        Quaternion finalRotation = Quaternion.Slerp(transform.rotation, desiredPosition, m_rotationVelocity * Time.deltaTime);
-        transform.rotation = finalRotation;
     }
 
     void OnCollisionStay()
