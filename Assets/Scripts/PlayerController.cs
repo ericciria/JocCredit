@@ -7,20 +7,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float m_movementVelocity = 10.0f;
-    [SerializeField] float m_acceleration = 2.0f;
     [SerializeField] float m_rotationVelocity = 5.0f;
     [SerializeField] float jumpForce = 2.0f;
+    
     Animator anim;
 
     Ray ray;
     RaycastHit hit;
 
     private Rigidbody rb;
-    private Vector2 moveInput;
+    public Vector2 moveInput;
 
     public Vector3 jump;
     public bool isGrounded;
+    
+     public playermovement firstperson;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         jump = new Vector3(0.0f, 3.0f, 0.0f);
         anim = GetComponent<Animator>();
+       
     }
 
     void Update()
@@ -40,7 +42,6 @@ public class PlayerController : MonoBehaviour
         moveInput.y = Input.GetAxis("Vertical");
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
@@ -60,7 +61,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         handleMovement();
-        //handleRotation();
     }
 
     private void handleMovement()
