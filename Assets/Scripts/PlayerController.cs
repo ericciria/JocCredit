@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         attack = baseAttack;
         baseShootRate = 1;
         shootRate = baseShootRate;
-        baseShootSpeed = 5;
+        baseShootSpeed = 10;
         shootSpeed = baseShootSpeed;
 
         playerInBox = false;
