@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 jump;
     public bool isGrounded;
+    public bool playerInBox;
 
     public float shootSpeed, shootRate, speed, attack, baseShootSpeed, baseShootRate, baseSpeed, baseAttack;
     public int baseMaxHealth, maxHealth, health;
@@ -41,7 +42,10 @@ public class PlayerController : MonoBehaviour
         shootRate = baseShootRate;
         baseShootSpeed = 5;
         shootSpeed = baseShootSpeed;
-       
+
+        playerInBox = false;
+
+
     }
 
     void Update()

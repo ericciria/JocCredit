@@ -7,10 +7,17 @@ public class BoxCamera : MonoBehaviour
     [SerializeField] Camera camera;
     [SerializeField] Transform player;
     [SerializeField] float speed = 5.0f;
+    [SerializeField] MoveWalls wall1;
+    private GameObject walls;
 
     private Vector3 target;
     private bool moure, cameraOnPlayer;
-    private float step; 
+    private float step;
+
+    private void Awake()
+    {
+        
+    }
 
     private void Start()
     {
@@ -20,6 +27,12 @@ public class BoxCamera : MonoBehaviour
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
+        if (wall1 != null)
+        {
+            walls = wall1.gameObject;
+            walls.SetActive(false);
+        }
+        
     }
 
     private void Update()
@@ -42,9 +55,9 @@ public class BoxCamera : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log(camera.transform.position);
-            Debug.Log(target);
-
+            walls.SetActive(true);
+            wall1.ascend = true;
+            other.gameObject.GetComponent<PlayerController>().playerInBox = true;
             moure = true;
             Debug.Log("Entering");
             camera.gameObject.transform.parent = null;
@@ -57,9 +70,11 @@ public class BoxCamera : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            wall1.ascend = false;
+            other.gameObject.GetComponent<PlayerController>().playerInBox = false;
             moure = false;
             Debug.Log("Exiting");
-            camera.transform.SetParent(player.parent);
+            //camera.transform.SetParent(player.parent);
 
             Debug.Log(camera.transform.position);
             Debug.Log(target);

@@ -10,8 +10,6 @@ public class movment : MonoBehaviour
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
     public float Speed = 1.0f;
     public float JumpForce = 1.0f;
 
@@ -20,7 +18,6 @@ public class movment : MonoBehaviour
 
     public PlayerController player;
     public bool primeraPersona;
-    private Rigidbody rb;
     Ray ray;
     RaycastHit hit;
 
@@ -32,7 +29,6 @@ public class movment : MonoBehaviour
         cam1.SetActive(false);
         primeraPersona = false;
         player = transform.gameObject.GetComponentInChildren<PlayerController>();
-        rb = player.rb;
     }
 
     void Update()
@@ -76,6 +72,13 @@ public class movment : MonoBehaviour
 
         
         transform.position = new Vector3(transform.position.x + moveInput.x * Time.deltaTime * player.speed, transform.position.y, transform.position.z + moveInput.y * Time.deltaTime * player.speed);
+
+        if (!player.playerInBox)
+        {
+            Vector3 target = player.transform.position + new Vector3(0, 10, -10);
+            cam3.transform.position = Vector3.MoveTowards(cam3.transform.position, target, 15 * Time.deltaTime);
+        }
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -98,12 +101,13 @@ public class movment : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         transform.position = transform.position + ((player.transform.right * horizontal + player.transform.forward * vertical) * Time.deltaTime * player.speed);
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        // Player Rotation
         float mouseX = Input.GetAxis("Mouse X") * 5;
         float mouseY = Input.GetAxis("Mouse Y") * 5;
-
         yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -30, 30);
