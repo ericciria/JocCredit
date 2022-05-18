@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();   
+        rb = GetComponent<Rigidbody>();
+        gun = GetComponentInChildren<gun>();
 
     }
 

@@ -6,6 +6,7 @@ public class ItemInfo : MonoBehaviour
 {
     public Item info;
     private Inventory player;
+    private PlayerController playerC;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,8 +14,13 @@ public class ItemInfo : MonoBehaviour
         {
             player = other.gameObject.GetComponent<Inventory>();
 
-            player.UpdateStats(info.ShootSpeed, info.FireRate, info.Speed, info.Damage, info.Health);
-
+            
+            if (info.Effect.Equals("Blue"))
+            {
+                playerC = player.gameObject.GetComponent<PlayerController>();
+                playerC.gun.color = Color.blue;
+            }
+            player.UpdateStats(info.ShootSpeed, info.FireRate, info.Speed, info.Damage, info.Health, info.TamanyBala);
             Destroy(gameObject);
         }
     }

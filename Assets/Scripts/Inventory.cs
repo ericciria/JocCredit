@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     PlayerController player;
     public int maxHealth;
     public float shootSpeed, shootRate, speed, attack;
-
+    public Vector3 tamanyBala;
     void Start()
     {
         player = gameObject.GetComponent<PlayerController>();
@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
         shootRate = 0;
         speed = 0;
         attack = 0;
+        tamanyBala = new Vector3(0,0,0);
     }
 
 
@@ -27,13 +28,14 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UpdateStats(float shootSpeed1, float shootRate1, float speed1, float attack1, int maxHealth1)
+    public void UpdateStats(float shootSpeed1, float shootRate1, float speed1, float attack1, int maxHealth1, Vector3 tamanyBala1)
     {
         shootSpeed += shootSpeed1;
         shootRate += shootRate1;
         speed += speed1;
         attack += attack1;
         maxHealth += maxHealth1;
+        tamanyBala += tamanyBala1;
         
         if (shootRate < 0.4)
         {
@@ -73,5 +75,6 @@ public class Inventory : MonoBehaviour
         player.speed = player.baseSpeed + speed;
         player.attack = player.baseAttack + attack;
         player.maxHealth = player.baseMaxHealth + maxHealth;
+        player.gun.tamanyBala = new Vector3(0.3f,0.3f,0.3f) + tamanyBala;
     }
 }

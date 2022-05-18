@@ -12,6 +12,7 @@ public class BoxCamera : MonoBehaviour
 
     private Vector3 target;
     private bool moure, cameraOnPlayer;
+    public bool completedRoom, finished;
     private float step;
 
     private void Awake()
@@ -32,7 +33,9 @@ public class BoxCamera : MonoBehaviour
             walls = wall1.gameObject;
             walls.SetActive(false);
         }
-        
+
+        completedRoom = false;
+
     }
 
     private void Update()
@@ -50,13 +53,21 @@ public class BoxCamera : MonoBehaviour
                 cameraOnPlayer = true;
             }
         }
+
+        if (completedRoom && !finished)
+        {
+            StartCoroutine(roomFinished());
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            walls.SetActive(true);
-            wall1.ascend = true;
+            if (walls != null)
+            {
+                walls.SetActive(true);
+                wall1.ascend = true;
+            }
             other.gameObject.GetComponent<PlayerController>().playerInBox = true;
             moure = true;
             Debug.Log("Entering");
@@ -70,14 +81,28 @@ public class BoxCamera : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            wall1.ascend = false;
+            if (wall1 != null)
+            {
+                wall1.ascend = false;
+            }
+            
             other.gameObject.GetComponent<PlayerController>().playerInBox = false;
             moure = false;
             Debug.Log("Exiting");
-            //camera.transform.SetParent(player.parent);
-
-            Debug.Log(camera.transform.position);
-            Debug.Log(target);
         }
+    }
+
+    IEnumerator roomFinished()
+    {
+        finished = true;
+        wall1.ascend = false;
+        yield return new WaitForSeconds(2);
+        restoreCamera();
+        Destroy(walls);
+    }
+
+    public void restoreCamera()
+    {
+        player.gameObject.GetComponent<PlayerController>().playerInBox = false;
     }
 }
