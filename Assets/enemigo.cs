@@ -5,13 +5,13 @@ using UnityEngine;
 public class enemigo : MonoBehaviour
 {
 
-    Animator anim;
+    public Animator anim;
 
     public float rangoAlerta;
 
     public LayerMask capaDelJugador;
 
-    bool estarAlerta;
+    public bool estarAlerta;
 
     public Transform jugador;
 
@@ -24,6 +24,7 @@ public class enemigo : MonoBehaviour
     public int vida;
 
     public ParticleSystem sang;
+    public Rigidbody rb;
 
     
 
@@ -32,10 +33,12 @@ public class enemigo : MonoBehaviour
     {
         sang = GetComponentInChildren<ParticleSystem>();
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
     void Start()
     {
         comprovar = true;
+        dead = false;
     }
 
     // Update is called once per frame
@@ -81,32 +84,19 @@ public class enemigo : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //Destroy(collision.gameObject);
-        if (collision.gameObject.tag.Equals("Bullet"))
-        {
-            sang.Play();
-            Debug.Log("hola");
-            vida--;
-            if (vida == 5)
-            {
-                StartCoroutine(RebreMal());
-            }
-            if(vida<=0)
-            {
-                comprovar = false;
-                anim.Play("dead", -1, 0f);
-                GetComponent<BoxCollider>().enabled=false;
-            }
-            
-        }
+        
     }
 
-    IEnumerator RebreMal()
+    public IEnumerator RebreMal()
     {
         comprovar = false;
         anim.Play("hurt", -1, 0f);
+        Debug.LogError("AAAAAA");
         yield return new WaitForSeconds(2.5f);
+        Debug.LogError("BBBBBBBBBBB");
         if (!dead)
         {
+            Debug.LogError("CCCCCCCCCC");
             comprovar = true;
         }
         
