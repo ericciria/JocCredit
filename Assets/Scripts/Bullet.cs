@@ -28,6 +28,7 @@ public class Bullet : MonoBehaviour
                 {
                     enemy.sang.Play();
                     enemy.vida--;
+                    enemy.sliderhealth.fillAmount= (float)enemy.vida / enemy.maxVida;
                     if (enemy.vida == 5)
                     {
                         StartCoroutine(RebreMal(enemy));
