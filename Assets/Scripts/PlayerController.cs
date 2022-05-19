@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 
 public class PlayerController : MonoBehaviour
+
 {
+
+    public Image bloodEfect;
     [SerializeField] float jumpForce = 2.0f;
     
     Animator anim;
@@ -23,6 +27,10 @@ public class PlayerController : MonoBehaviour
     public float shootSpeed, shootRate, speed, attack, baseShootSpeed, baseShootRate, baseSpeed, baseAttack;
     public int baseMaxHealth, maxHealth, health;
     public gun gun;
+    private float r;
+    private float g;
+    private float b;
+    private float a;
 
 
     private void Awake()
@@ -34,6 +42,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        r = bloodEfect.color.r;
+        g = bloodEfect.color.g;
+        b = bloodEfect.color.b;
+        a = bloodEfect.color.a;
+
         jump = new Vector3(0.0f, 3.0f, 0.0f);
         anim = GetComponent<Animator>();
 
@@ -87,16 +100,18 @@ public class PlayerController : MonoBehaviour
         return Camera.main.ScreenPointToRay(Input.mousePosition);
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void activarSang(int vida)
     {
-        //Destroy(collision.gameObject);
-        if (collision.gameObject.tag.Equals("enemy"))
-        {
-            health--;
-            rb.AddForce(transform.up * m_Thrust);
+        health -= vida;
+        //activar sang
+        // activar so de ferse mal
+    }
 
-        }
-
+    private void changeColor()
+    {
+        Color c = new Color(r, g, b, a);
+        bloodEfect.color = c;
 
     }
+    
 }
