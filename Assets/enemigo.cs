@@ -15,7 +15,7 @@ public class enemigo : MonoBehaviour
 
     bool estarAlerta, estarAprop;
 
-    public Transform jugador;
+    public Transform jugador, attackPosition;
 
     public float speed;
 
@@ -85,7 +85,10 @@ public class enemigo : MonoBehaviour
         comprovar = false;
         anim.SetBool("atack", true);
         yield return new WaitForSeconds(0.8f);
-        player.activarSang(1);
+        if(Physics.CheckSphere(attackPosition.position, rangoAprop / 2, capaDelJugador))
+        {
+            player.activarSang(1);
+        }
         yield return new WaitForSeconds(0.8f);
         anim.SetBool("atack", false);
         atacant = false;
@@ -98,5 +101,6 @@ public class enemigo : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, rangoAlerta);
         Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPosition.position, rangoAprop/2);
     }
 }

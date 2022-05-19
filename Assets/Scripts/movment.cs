@@ -113,7 +113,7 @@ public class movment : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * 5;
         yRotation += mouseX;
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -40, 40);
+        xRotation = Mathf.Clamp(xRotation, -40, 50);
 
         player.transform.eulerAngles = new Vector3(xRotation, yRotation, 0.0f);
     }
