@@ -78,11 +78,10 @@ public class enemigo : MonoBehaviour
         comprovar = false;
         anim.SetBool("atack", true);
         yield return new WaitForSeconds(2);
-        player.health--;
+        player.activarSang(1);
         anim.SetBool("atack", false);
         atacant = false;
         comprovar = true;
-
 
     }
 
