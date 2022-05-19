@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,23 +8,24 @@ public class enemigo : MonoBehaviour
 
     Animator anim;
 
-    public float rangoAlerta;
+    public float rangoAlerta , rangoAprop;
 
     public LayerMask capaDelJugador;
 
-    bool estarAlerta;
+    bool estarAlerta, estarAprop;
 
     public Transform jugador;
 
     public float speed;
 
-    public bool atac, perseguir, dead;
+    public bool perseguir, dead, atacant;
 
     public bool comprovar;
 
     public int vida;
 
     public ParticleSystem sang;
+    private PlayerController player;
 
     
 
@@ -36,6 +38,7 @@ public class enemigo : MonoBehaviour
     void Start()
     {
         comprovar = true;
+        player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -44,16 +47,9 @@ public class enemigo : MonoBehaviour
 
         if (comprovar)
         {
-            if (atac)
-            {
-
-            }
-            else
-            {
-                anim.SetBool("atack", false);
-            }
             estarAlerta = Physics.CheckSphere(transform.position, rangoAlerta, capaDelJugador);
-            if (estarAlerta == true)
+            estarAprop = Physics.CheckSphere(transform.position, rangoAprop, capaDelJugador);
+            if (estarAlerta && !estarAprop)
             {
                 //transform.LookAt(jugador);
 
@@ -63,11 +59,30 @@ public class enemigo : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(jugador.position.x, transform.position.y, jugador.position.z), speed * Time.deltaTime);
                 anim.SetBool("perseguir", true);
             }
+            else if(estarAlerta && estarAprop && !atacant)
+            {
+                anim.SetBool("perseguir", true);
+                StartCoroutine(Atacar());
+            }
             else
             {
                 anim.SetBool("perseguir", false);
             }
         }
+
+    }
+
+    IEnumerator Atacar()
+    {
+        atacant = true;
+        comprovar = false;
+        anim.SetBool("atack", true);
+        yield return new WaitForSeconds(2);
+        player.health--;
+        anim.SetBool("atack", false);
+        atacant = false;
+        comprovar = true;
+
 
     }
 
@@ -98,6 +113,8 @@ public class enemigo : MonoBehaviour
             }
             
         }
+
+
     }
 
     IEnumerator RebreMal()

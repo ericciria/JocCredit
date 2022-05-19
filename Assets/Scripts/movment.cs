@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class movment : MonoBehaviour
 {
-
+    public int vida;
     private Vector2 moveInput;
     public float speedH = 2.0f;
     public float speedV = 2.0f;
@@ -33,6 +33,9 @@ public class movment : MonoBehaviour
 
     void Update()
     {
+      
+
+
         if (player.speed < 5)
         {
             player.speed = 5;
@@ -119,4 +122,8 @@ public class movment : MonoBehaviour
     {
         return Camera.main.ScreenPointToRay(Input.mousePosition);
     }
+
+    
+
+
 }

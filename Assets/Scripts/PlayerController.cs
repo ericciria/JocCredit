@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     
     Animator anim;
 
+    public float m_Thrust = 2000f;
+
     public Rigidbody rb;
     public Vector2 moveInput;
 
@@ -83,5 +85,18 @@ public class PlayerController : MonoBehaviour
     private Ray GetCameraRay()
     {
         return Camera.main.ScreenPointToRay(Input.mousePosition);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        //Destroy(collision.gameObject);
+        if (collision.gameObject.tag.Equals("enemy"))
+        {
+            health--;
+            rb.AddForce(transform.up * m_Thrust);
+
+        }
+
+
     }
 }
