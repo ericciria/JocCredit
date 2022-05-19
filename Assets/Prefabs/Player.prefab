@@ -135,7 +135,6 @@ MonoBehaviour:
   cam1: {fileID: 8615323241097878630}
   player: {fileID: 0}
   primeraPersona: 0
-  olayerInBox: 0
 --- !u!1 &8615323242502090726
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 8615323242502090727}
   bulletPrefab: {fileID: 6989581195259847665, guid: 6656e9518c5c5df4cb1c872605372318, type: 3}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  tamanyBala: {x: 0, y: 0, z: 0}
 --- !u!54 &8615323241990828465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -304,10 +305,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 47bfbab9a5ce0fe45a524dea7d7d69d7, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.0235907
-  m_Height: 4.8295765
+  m_Radius: 1.2
+  m_Height: 6
   m_Direction: 1
-  m_Center: {x: 0.20000002, y: 1, z: -0.0000000074505797}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!95 &8615323241990828467
 Animator:
   serializedVersion: 3
@@ -344,6 +345,7 @@ MonoBehaviour:
   moveInput: {x: 0, y: 0}
   jump: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  playerInBox: 0
   shootSpeed: 0
   shootRate: 0
   speed: 0

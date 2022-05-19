@@ -21,3 +21,4 @@ MonoBehaviour:
   fireRate: 2
   damage: 0.5
   health: 5
+  tamanyBala: {x: 0.1, y: 0.1, z: 0.5}
