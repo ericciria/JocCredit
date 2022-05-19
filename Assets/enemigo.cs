@@ -23,11 +23,14 @@ public class enemigo : MonoBehaviour
 
     public int vida;
 
+    public ParticleSystem sang;
+
     
 
 
     private void Awake()
     {
+        sang = GetComponentInChildren<ParticleSystem>();
         anim = GetComponent<Animator>();
     }
     void Start()
@@ -80,6 +83,7 @@ public class enemigo : MonoBehaviour
         //Destroy(collision.gameObject);
         if (collision.gameObject.tag.Equals("Bullet"))
         {
+            sang.Play();
             Debug.Log("hola");
             vida--;
             if (vida == 5)
