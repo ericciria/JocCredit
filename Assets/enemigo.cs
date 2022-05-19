@@ -95,27 +95,4 @@ public class enemigo : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, rangoAlerta);
         Gizmos.color = Color.red;
     }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        //Destroy(collision.gameObject);
-        
-    }
-
-    public IEnumerator RebreMal()
-    {
-        comprovar = false;
-        anim.Play("hurt", -1, 0f);
-        Debug.LogError("AAAAAA");
-        yield return new WaitForSeconds(2.5f);
-        Debug.LogError("BBBBBBBBBBB");
-        if (!dead)
-        {
-            Debug.LogError("CCCCCCCCCC");
-            comprovar = true;
-        }
-        
-    }
-
-
 }

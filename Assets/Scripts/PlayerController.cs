@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
 
     private void handleMovement()
     {
-        Debug.LogWarning(anim);
         if (moveInput.y == 0 && moveInput.x == 0)
         {
             anim.SetBool("walk", false);

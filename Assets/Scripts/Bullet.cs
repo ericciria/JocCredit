@@ -14,22 +14,13 @@ public class Bullet : MonoBehaviour
         mr = GetComponent<MeshRenderer>();
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        //Destroy(collision.gameObject);
-        if (!collision.gameObject.tag.Equals("Player") && !collision.gameObject.tag.Equals("Bullet"))
-        {
-            Destroy(gameObject);
-        }  
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (!impacte)
         {
             mr.enabled = false;
             impacte = true;
-            if (other.gameObject.tag.Equals("Enemy"))
+            if (other.gameObject.tag.Equals("enemy"))
             {
                 
                 enemigo enemy = other.GetComponent<enemigo>();
@@ -46,7 +37,7 @@ public class Bullet : MonoBehaviour
                         enemy.comprovar = false;
                         enemy.dead = true;
                         enemy.anim.Play("dead", -1, 0f);
-                        GetComponent<BoxCollider>().enabled = false;
+                        other.GetComponent<BoxCollider>().enabled = false;
                     }
                 }
 
