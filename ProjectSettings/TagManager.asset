@@ -8,6 +8,7 @@ TagManager:
   - terrain
   - Item
   - Bullet
+  - volver
   layers:
   - Default
   - TransparentFX
