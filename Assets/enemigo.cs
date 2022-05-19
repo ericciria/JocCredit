@@ -77,8 +77,9 @@ public class enemigo : MonoBehaviour
         atacant = true;
         comprovar = false;
         anim.SetBool("atack", true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.8f);
         player.activarSang(1);
+        yield return new WaitForSeconds(0.8f);
         anim.SetBool("atack", false);
         atacant = false;
         comprovar = true;

@@ -25,8 +25,7 @@ public class portal : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("HOla");
-            cam3.SetActive(false);
-            cam1.SetActive(false);
+            other.GetComponentInParent<movment>().primeraPersona = true;
         }
 
 

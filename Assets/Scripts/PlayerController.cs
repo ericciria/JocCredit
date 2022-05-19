@@ -66,6 +66,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        a = Mathf.Clamp(a, 0, 1f);
+        a -= 0.15f*Time.deltaTime;
+        changeColor();
+
+
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -103,6 +108,8 @@ public class PlayerController : MonoBehaviour
     public void activarSang(int vida)
     {
         health -= vida;
+        a += 0.30f;
+        changeColor();
         //activar sang
         // activar so de ferse mal
     }

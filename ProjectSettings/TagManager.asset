@@ -9,6 +9,8 @@ TagManager:
   - Item
   - Bullet
   - volver
+  - portal
+  - enemy
   layers:
   - Default
   - TransparentFX

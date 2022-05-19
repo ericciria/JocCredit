@@ -25,7 +25,7 @@ public class BoxCamera : MonoBehaviour
         step = speed * Time.deltaTime;
         moure = false;
         cameraOnPlayer = true;
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        camera = GameObject.Find("MainCamera").GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (wall1 != null)
