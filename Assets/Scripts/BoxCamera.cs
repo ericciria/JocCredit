@@ -75,6 +75,7 @@ public class BoxCamera : MonoBehaviour
             target = new Vector3(transform.position.x, transform.position.y + 15, transform.position.z - 15);
 
             cameraOnPlayer = false;
+            
         }
     }
     private void OnTriggerExit(Collider other)
