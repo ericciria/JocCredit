@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private float b;
     private float a;
 
+    private Image sliderhealth;
 
     private void Awake()
     {
@@ -42,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        health = maxHealth;
+        sliderhealth = GameObject.Find("Canvas/Slider/Background").GetComponent<Image>();
+        sliderhealth.fillAmount = 1;
         r = bloodEfect.color.r;
         g = bloodEfect.color.g;
         b = bloodEfect.color.b;
@@ -110,6 +114,7 @@ public class PlayerController : MonoBehaviour
         health -= vida;
         a += 0.30f;
         changeColor();
+        sliderhealth.fillAmount = (float)health / maxHealth;
         //activar sang
         // activar so de ferse mal
     }

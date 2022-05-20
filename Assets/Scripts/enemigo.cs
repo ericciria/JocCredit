@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class enemigo : MonoBehaviour
 {
@@ -22,13 +23,14 @@ public class enemigo : MonoBehaviour
 
     public bool comprovar;
 
-    public int vida;
+    public int vida,maxVida;
 
     public ParticleSystem sang;
     public Rigidbody rb;
     private PlayerController player;
 
-    
+    public Image sliderhealth;
+
 
 
     private void Awake()
@@ -36,12 +38,14 @@ public class enemigo : MonoBehaviour
         sang = GetComponentInChildren<ParticleSystem>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        sliderhealth= GetComponentInChildren<Image>();
     }
     void Start()
     {
         comprovar = true;
         dead = false;
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
+        vida = maxVida;
     }
 
     // Update is called once per frame
