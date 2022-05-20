@@ -7446,7 +7446,7 @@ ParticleSystem:
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -11173,7 +11173,7 @@ ParticleSystem:
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -11226,7 +11226,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -12287,15 +12287,15 @@ PrefabInstance:
       objectReference: {fileID: 560752685}
     - target: {fileID: 7794583628873071154, guid: 680cabdc1a0cd2d4ea69aa905308f48b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 23
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7794583628873071154, guid: 680cabdc1a0cd2d4ea69aa905308f48b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 23
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7794583628873071154, guid: 680cabdc1a0cd2d4ea69aa905308f48b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 23
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7794583628873071154, guid: 680cabdc1a0cd2d4ea69aa905308f48b, type: 3}
       propertyPath: m_LocalPosition.x
