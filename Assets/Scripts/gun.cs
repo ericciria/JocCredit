@@ -11,6 +11,7 @@ public class gun : MonoBehaviour
     private PlayerController player;
     public Color color;
     public Vector3 tamanyBala;
+    public ParticleSystem flash;
 
     private void Start()
     {
@@ -18,6 +19,8 @@ public class gun : MonoBehaviour
         player = gameObject.GetComponentInParent<PlayerController>();
         color = new Color(0.5f, 0.5f, 0.5f);
         tamanyBala = new Vector3(0.3f,0.3f,0.3f);
+        flash = GetComponentInChildren<ParticleSystem>();
+
     }
     void Update()
     {
@@ -34,6 +37,7 @@ public class gun : MonoBehaviour
     IEnumerator shoot()
     {
         cantshoot = false;
+        flash.Play();
         var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * player.shootSpeed;
         bullet.GetComponent<MeshRenderer>().material.color = color;
