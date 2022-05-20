@@ -18,11 +18,11 @@ public class Bullet : MonoBehaviour
     {
         if (!impacte)
         {
-            mr.enabled = false;
+            
             impacte = true;
             if (other.gameObject.tag.Equals("enemy"))
             {
-                
+                mr.enabled = false;
                 enemigo enemy = other.GetComponent<enemigo>();
                 if (!enemy.dead)
                 {
