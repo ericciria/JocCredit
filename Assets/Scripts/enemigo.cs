@@ -84,12 +84,12 @@ public class enemigo : MonoBehaviour
         atacant = true;
         comprovar = false;
         anim.SetBool("atack", true);
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.7f);
         if(Physics.CheckSphere(attackPosition.position, rangoAprop / 2, capaDelJugador))
         {
             player.activarSang(1);
         }
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1.3f);
         anim.SetBool("atack", false);
         atacant = false;
         comprovar = true;

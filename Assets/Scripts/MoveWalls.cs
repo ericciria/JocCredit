@@ -6,18 +6,29 @@ public class MoveWalls : MonoBehaviour
 {
     public bool ascend;
 
+    public Transform[] murs;
+    public MeshRenderer illa;
+
+    private void Start()
+    {
+        murs = GetComponentsInChildren<Transform>();
+        illa = GetComponentInParent<MeshRenderer>();
+        Debug.LogWarning(murs);
+        Debug.LogWarning(illa);
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (ascend)
+        /*if (ascend)
         {
             Ascend();
         }
         else
         {
             Descend();
-        }
+        }*/
     }
     void Ascend()
     {

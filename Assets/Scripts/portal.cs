@@ -27,12 +27,6 @@ public class portal : MonoBehaviour
             Debug.Log("HOla");
             other.GetComponentInParent<movment>().primeraPersona = true;
         }
-
-
-
-
     }
-
-   
 }
 
