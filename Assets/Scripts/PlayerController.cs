@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        sliderhealth = GameObject.Find("Canvas/Slider/Background").GetComponent<Image>();
+        sliderhealth = GameObject.Find("Sang/sangre").GetComponent<Image>();
         sliderhealth.fillAmount = 1;
         r = bloodEfect.color.r;
         g = bloodEfect.color.g;
@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
         jump = new Vector3(0.0f, 3.0f, 0.0f);
         anim = GetComponent<Animator>();
+        
 
         baseSpeed = 5;
         speed = baseSpeed;
@@ -64,8 +65,6 @@ public class PlayerController : MonoBehaviour
         shootSpeed = baseShootSpeed;
 
         playerInBox = false;
-
-
     }
 
     void Update()
