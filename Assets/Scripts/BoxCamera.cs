@@ -31,7 +31,7 @@ public class BoxCamera : MonoBehaviour
         if (wall1 != null)
         {
             walls = wall1.gameObject;
-            walls.SetActive(false);
+            //walls.SetActive(false);
         }
 
         completedRoom = false;
@@ -71,7 +71,6 @@ public class BoxCamera : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().playerInBox = true;
             moure = true;
             Debug.Log("Entering");
-            camera.gameObject.transform.parent = null;
             target = new Vector3(transform.position.x, transform.position.y + 15, transform.position.z - 15);
 
             cameraOnPlayer = false;
@@ -104,6 +103,7 @@ public class BoxCamera : MonoBehaviour
 
     public void restoreCamera()
     {
+        moure = false;
         player.gameObject.GetComponent<PlayerController>().playerInBox = false;
     }
 }
