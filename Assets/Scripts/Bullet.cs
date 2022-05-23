@@ -22,27 +22,53 @@ public class Bullet : MonoBehaviour
             {
 
                 impacte = true;
-                if (other.gameObject.tag.Equals("enemy"))
+                if (other.gameObject.tag.Equals("Enemy"))
                 {
                     mr.enabled = false;
                     enemigo enemy = other.GetComponent<enemigo>();
-                    if (!enemy.dead)
+                    if (enemy != null)
                     {
-                        enemy.sang.Play();
-                        enemy.vida--;
-                        enemy.sliderhealth.fillAmount = (float)enemy.vida / enemy.maxVida;
-                        if (enemy.vida == 5)
+                        if (!enemy.dead)
                         {
-                            StartCoroutine(RebreMal(enemy));
-                        }
-                        else if (enemy.vida <= 0 && !enemy.dead)
-                        {
-                            enemy.comprovar = false;
-                            enemy.dead = true;
-                            enemy.anim.Play("dead", -1, 0f);
-                            other.GetComponent<BoxCollider>().enabled = false;
+                            enemy.sang.Play();
+                            enemy.vida--;
+                            enemy.sliderhealth.fillAmount = (float)enemy.vida / enemy.maxVida;
+                            if (enemy.vida == 5)
+                            {
+                                StartCoroutine(RebreMal(enemy));
+                            }
+                            else if (enemy.vida <= 0 && !enemy.dead)
+                            {
+                                enemy.comprovar = false;
+                                enemy.dead = true;
+                                enemy.anim.Play("dead", -1, 0f);
+                                other.GetComponent<BoxCollider>().enabled = false;
+                            }
                         }
                     }
+                    else
+                    {
+                        enemyshoot enemyShoot = other.GetComponent<enemyshoot>();
+                        Debug.LogWarning(enemyShoot);
+                        if (!enemyShoot.dead)
+                        {
+                            //enemyShoot.sang.Play();
+                            enemyShoot.vida--;
+                            //enemyShoot.sliderhealth.fillAmount = (float)enemyShoot.vida / enemyShoot.maxVida;
+                            if (enemyShoot.vida == 5)
+                            {
+                                //StartCoroutine(RebreMal(enemyShoot));
+                            }
+                            else if (enemyShoot.vida <= 0 && !enemyShoot.dead)
+                            {
+                                enemyShoot.comprovar = false;
+                                enemyShoot.dead = true;
+                               enemyShoot.anim.Play("dead", -1, 0f);
+                                other.GetComponent<BoxCollider>().enabled = false;
+                            }
+                        }
+                    }
+                    
 
                 }
                 else if (!other.gameObject.tag.Equals("Player") && !other.gameObject.tag.Equals("Bullet"))
