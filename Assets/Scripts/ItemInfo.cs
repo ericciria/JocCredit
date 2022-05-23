@@ -8,6 +8,12 @@ public class ItemInfo : MonoBehaviour
     private Inventory player;
     private PlayerController playerC;
 
+    private void Update()
+    {
+        float y = Mathf.PingPong(Time.time, 4)/4;
+        transform.position = new Vector3(transform.position.x, y+1, transform.position.z);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
