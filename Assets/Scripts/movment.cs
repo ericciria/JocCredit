@@ -87,11 +87,28 @@ public class movment : MonoBehaviour
 
         ray = GetCameraRay();
 
-        if (Physics.Raycast(ray, out hit, 1000.0f))
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayLength;
+
+        if (groundPlane.Raycast(ray, out rayLength))
+        {
+            Vector3 pointToLook = ray.GetPoint(rayLength);
+            Debug.DrawLine(ray.origin, pointToLook, Color.cyan);
+
+            //player.transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(new Vector3(pointToLook.x, player.transform.position.y, pointToLook.z) - player.transform.position), 10 * Time.deltaTime);
+        }
+
+        /*if (Physics.Raycast(ray, out hit, 1000.0f))
         {
             player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(new Vector3(hit.point.x, player.transform.position.y, hit.point.z) - player.transform.position), 5 * Time.deltaTime);
-        }
+        }*/
        
+    }
+
+    float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
+    {
+        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
 
     private void FirstPersonMovement()

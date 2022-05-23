@@ -5433,6 +5433,14 @@ PrefabInstance:
       propertyPath: bloodEfect
       value: 
       objectReference: {fileID: 560752685}
+    - target: {fileID: 8615323241990828465, guid: 9bde03b480706dd4aa1bb0273b737a6b, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615323241990828465, guid: 9bde03b480706dd4aa1bb0273b737a6b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8615323242003118620, guid: 9bde03b480706dd4aa1bb0273b737a6b, type: 3}
       propertyPath: cam3
       value: 
@@ -5451,7 +5459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8615323242003118622, guid: 9bde03b480706dd4aa1bb0273b737a6b, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8615323242003118623, guid: 9bde03b480706dd4aa1bb0273b737a6b, type: 3}
       propertyPath: m_RootOrder

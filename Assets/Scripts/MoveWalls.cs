@@ -76,25 +76,19 @@ public class MoveWalls : MonoBehaviour
             if (i==0)
             {
                 mur.transform.position = new Vector3(illa.transform.position.x, illa.transform.position.y, illa.transform.position.z);
-                mur.localScale = new Vector3(mur.localScale.x*illa.transform.localScale.x/12,
-                    mur.localScale.y * illa.transform.localScale.y,
-                    mur.localScale.z * illa.transform.localScale.z/6);
+                mur.localScale = new Vector3(20, 10, 1);
             }
             else if (i == 1)
             {
                 mur.transform.position = new Vector3(illa.transform.position.x - illa.bounds.size.x / 3.5f, illa.transform.position.y, illa.transform.position.z + illa.bounds.size.z / 12f);
-                mur.localScale = new Vector3(mur.localScale.x * illa.transform.localScale.x / 12,
-                    mur.localScale.y * illa.transform.localScale.y/1.2f,
-                    mur.localScale.z * illa.transform.localScale.z / 6);
+                mur.localScale = new Vector3(1, 15, 10);
                 mur.rotation = new Quaternion(-0.2f,0.6f,0.6f,0.2f);
             }
             // Izquierda
             else if (i == 2)
             {
                 mur.transform.position = new Vector3(illa.transform.position.x - illa.bounds.size.x / 2.5f, illa.transform.position.y, illa.transform.position.z + illa.bounds.size.z / 2);
-                mur.localScale = new Vector3(0.1f,
-                    mur.localScale.y * illa.transform.localScale.y*2,
-                    mur.localScale.z * illa.transform.localScale.z / 6);
+                mur.localScale = new Vector3(1,20,10);
                 Debug.LogWarning(mur.rotation);
                 mur.rotation = new Quaternion(0f, 0.6f, 0.6f, 0f);
             }
@@ -102,43 +96,33 @@ public class MoveWalls : MonoBehaviour
             else if (i == 3)
             {
                 mur.transform.position = new Vector3(illa.transform.position.x - illa.bounds.size.x / 4f, illa.transform.position.y, illa.transform.position.z + illa.bounds.size.z * 0.8f);
-                mur.localScale = new Vector3(mur.localScale.x * illa.transform.localScale.x / 12,
-                    mur.localScale.y * illa.transform.localScale.y/1.2f,
-                    mur.localScale.z * illa.transform.localScale.z / 6);
+                mur.localScale = new Vector3(1, 15, 10);
                 mur.rotation = new Quaternion(-0.6f, 0.25f, 0.25f, 0.6f);
             }
             // Arriba
             else if (i == 4)
             {
                 mur.transform.position = new Vector3(illa.transform.position.x, illa.transform.position.y, illa.transform.position.z + illa.bounds.size.z*0.8f);
-                mur.localScale = new Vector3(mur.localScale.x * illa.transform.localScale.x / 12,
-                    mur.localScale.y * illa.transform.localScale.y,
-                    mur.localScale.z * illa.transform.localScale.z / 6);
+                mur.localScale = new Vector3(20, 10, 1);
             }
             // Arriba derecha
             else if (i == 5)
             {
                 mur.transform.position = new Vector3(illa.transform.position.x + illa.bounds.size.x / 3.5f, illa.transform.position.y, illa.transform.position.z + illa.bounds.size.z *0.8f);
-                mur.localScale = new Vector3(mur.localScale.x * illa.transform.localScale.x / 12,
-                    mur.localScale.y * illa.transform.localScale.y/1.2f,
-                    mur.localScale.z * illa.transform.localScale.z / 6);
+                mur.localScale = new Vector3(1, 15, 10);
                 mur.rotation = new Quaternion(-0.2f, 0.6f, 0.6f, 0.2f);
             }
             // Derecha
             else if (i == 6)
             {
                 mur.transform.position = new Vector3(illa.transform.position.x + illa.bounds.size.x/2.5f, illa.transform.position.y, illa.transform.position.z + illa.bounds.size.z/2);
-                mur.localScale = new Vector3(0.1f,
-                    mur.localScale.y * illa.transform.localScale.y*2,
-                    mur.localScale.z * illa.transform.localScale.z / 6);
+                mur.localScale = new Vector3(1, 20, 10);
                 mur.rotation = new Quaternion(0f, 0.6f, 0.6f, 0f);
             }
             else
             {
                 mur.transform.position = new Vector3(illa.transform.position.x + illa.bounds.size.x / 3.5f, illa.transform.position.y, illa.transform.position.z + illa.bounds.size.z / 18f);
-                mur.localScale = new Vector3(mur.localScale.x * illa.transform.localScale.x / 12,
-                    mur.localScale.y * illa.transform.localScale.y/1.2f,
-                    mur.localScale.z * illa.transform.localScale.z / 6);
+                mur.localScale = new Vector3(1, 15, 10);
                 mur.rotation = new Quaternion(-0.6f, 0.25f, 0.25f, 0.6f);
             }
             i++;

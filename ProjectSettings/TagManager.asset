@@ -11,7 +11,7 @@ TagManager:
   - Enemy
   - volver
   - portal
-  - enemy
+  - Mur
   layers:
   - Default
   - TransparentFX
