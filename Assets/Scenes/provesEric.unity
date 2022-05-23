@@ -359,6 +359,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.012631199, y: 0.038635284, z: 0.0106449565}
   m_Center: {x: 0.0039221756, y: 0.003927931, z: -0.0036855137}
+--- !u!114 &376825543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2455283547449522605, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+  m_PrefabInstance: {fileID: 679789285}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc84792bd4a04e4d95b55f413ff6636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &497741349
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +557,75 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3a4cdfdfa3e0a894d8c1295c21a16ec8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e654008c0c551d41b2f83f329e79d6f, type: 3}
+--- !u!1001 &679789285
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 334560459}
+    m_Modifications:
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.06145054
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.023434278
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.07852846
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.06318944
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4168513
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.02577755
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4823771
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.48237717
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.51702267
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.51702243
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455283547449522606, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
+      propertyPath: m_Name
+      value: Walls
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -6729,7 +6809,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   player: {fileID: 0}
   speed: 8
-  wall1: {fileID: 0}
+  wall1: {fileID: 376825543}
   completedRoom: 0
   finished: 0
 --- !u!65 &1772416472
