@@ -45,6 +45,7 @@ public class enemigo : MonoBehaviour
         comprovar = true;
         dead = false;
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
+        jugador = player.transform;
         vida = maxVida;
     }
 

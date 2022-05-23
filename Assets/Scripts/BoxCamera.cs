@@ -14,19 +14,26 @@ public class BoxCamera : MonoBehaviour
     private bool moure, cameraOnPlayer;
     public bool completedRoom, finished;
     private float step;
+    public MeshRenderer illa;
 
-    private void Awake()
-    {
-        
-    }
+    public GameObject enemyPrefab1;
+    public GameObject enemyPrefab2;
+    public GameObject enemyPrefab3;
+    public enemigo[] enemies;
+    private bool canCheck, checkingIfClear;
+
 
     private void Start()
     {
+
         step = speed * Time.deltaTime;
         moure = false;
         cameraOnPlayer = true;
+        checkingIfClear = false;
+        canCheck = false;
         camera = GameObject.Find("MainCamera").GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        illa = GetComponentInParent<MeshRenderer>();
 
         if (wall1 != null)
         {
@@ -35,6 +42,21 @@ public class BoxCamera : MonoBehaviour
         }
 
         completedRoom = false;
+
+        checkIfCanSpawn();
+
+        int randomNumber = Random.Range(1, 5);
+        int i = 0;
+        enemies = new enemigo[randomNumber];
+        Debug.LogWarning(randomNumber);
+        while (i < randomNumber)
+        {
+            if (enemyPrefab1 != null)
+            {
+                enemies[i] = SpawnEnemy(enemyPrefab1).GetComponent<enemigo>();
+            }
+            i++;
+        }
 
     }
 
@@ -54,7 +76,11 @@ public class BoxCamera : MonoBehaviour
             }
         }
 
-        if (completedRoom && !finished)
+        if (canCheck && !checkingIfClear && !completedRoom)
+        {
+            StartCoroutine(checkEnemies());
+        }
+        else if (completedRoom && !finished)
         {
             StartCoroutine(roomFinished());
         }
@@ -63,6 +89,7 @@ public class BoxCamera : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            canCheck = true;
             if (walls != null)
             {
                 walls.SetActive(true);
@@ -77,20 +104,6 @@ public class BoxCamera : MonoBehaviour
             
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            if (wall1 != null)
-            {
-                wall1.ascend = false;
-            }
-            
-            other.gameObject.GetComponent<PlayerController>().playerInBox = false;
-            moure = false;
-            Debug.Log("Exiting");
-        }
-    }
 
     IEnumerator roomFinished()
     {
@@ -100,10 +113,69 @@ public class BoxCamera : MonoBehaviour
         restoreCamera();
         Destroy(walls);
     }
+    IEnumerator checkEnemies()
+    {
+        checkingIfClear = true;
+        int alive = 0;
+        foreach(enemigo enemy in enemies)
+        {
+            if (!enemy.dead)
+            {
+                alive++;
+            }
+        }
+        yield return new WaitForSeconds(2);
+        if(alive == 0)
+        {
+            completedRoom = true;
+        }
+        checkingIfClear = false;
+    }
 
     public void restoreCamera()
     {
         moure = false;
         player.gameObject.GetComponent<PlayerController>().playerInBox = false;
+    }
+
+    public GameObject SpawnEnemy(GameObject prefab)
+    {
+        GameObject enemy = Instantiate(prefab, checkIfCanSpawn(), Quaternion.identity) as GameObject;
+
+        return enemy;
+    }
+
+    private Vector3 checkIfCanSpawn()
+    {
+        int unstuck = 0;
+        Vector3 randomPosition = RandomPointOnCircleEdge();
+
+        while (unstuck < 20)
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(randomPosition, 3);
+            if (hitColliders.Length > 2)
+            {
+                randomPosition = RandomPointOnCircleEdge();
+            }
+            else
+            {
+                break;
+            }
+
+            unstuck++;
+        }
+        return randomPosition;
+    }
+
+    private Vector3 RandomPointOnCircleEdge()
+    {
+        var vector2 = Random.insideUnitCircle * illa.transform.localScale.x * 1.2f;
+        return (new Vector3(vector2.x, 0, vector2.y) + this.transform.position);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        //Gizmos.DrawWireSphere(transform.position, illa.transform.localScale.x*1.2f);
     }
 }

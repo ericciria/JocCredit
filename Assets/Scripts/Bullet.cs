@@ -16,36 +16,39 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!impacte)
+        if (!other.isTrigger)
         {
-            
-            impacte = true;
-            if (other.gameObject.tag.Equals("enemy"))
+            if (!impacte)
             {
-                mr.enabled = false;
-                enemigo enemy = other.GetComponent<enemigo>();
-                if (!enemy.dead)
-                {
-                    enemy.sang.Play();
-                    enemy.vida--;
-                    enemy.sliderhealth.fillAmount= (float)enemy.vida / enemy.maxVida;
-                    if (enemy.vida == 5)
-                    {
-                        StartCoroutine(RebreMal(enemy));
-                    }
-                    else if (enemy.vida <= 0 && !enemy.dead)
-                    {
-                        enemy.comprovar = false;
-                        enemy.dead = true;
-                        enemy.anim.Play("dead", -1, 0f);
-                        other.GetComponent<BoxCollider>().enabled = false;
-                    }
-                }
 
-            }
-            else if (!other.gameObject.tag.Equals("Player") && !other.gameObject.tag.Equals("Bullet"))
-            {
-                Destroy(gameObject);
+                impacte = true;
+                if (other.gameObject.tag.Equals("enemy"))
+                {
+                    mr.enabled = false;
+                    enemigo enemy = other.GetComponent<enemigo>();
+                    if (!enemy.dead)
+                    {
+                        enemy.sang.Play();
+                        enemy.vida--;
+                        enemy.sliderhealth.fillAmount = (float)enemy.vida / enemy.maxVida;
+                        if (enemy.vida == 5)
+                        {
+                            StartCoroutine(RebreMal(enemy));
+                        }
+                        else if (enemy.vida <= 0 && !enemy.dead)
+                        {
+                            enemy.comprovar = false;
+                            enemy.dead = true;
+                            enemy.anim.Play("dead", -1, 0f);
+                            other.GetComponent<BoxCollider>().enabled = false;
+                        }
+                    }
+
+                }
+                else if (!other.gameObject.tag.Equals("Player") && !other.gameObject.tag.Equals("Bullet"))
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
