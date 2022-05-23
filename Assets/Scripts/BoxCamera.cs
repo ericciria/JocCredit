@@ -104,6 +104,16 @@ public class BoxCamera : MonoBehaviour
             
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            foreach (enemigo enemy in enemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+        }
+    }
 
     IEnumerator roomFinished()
     {
