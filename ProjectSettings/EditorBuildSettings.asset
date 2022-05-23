@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/provesCiria.unity
     guid: 3ec4212d7605ae24c9b70ce9ad133d0e
+  - enabled: 1
+    path: Assets/Scenes/nivell2.unity
+    guid: baa62ade6b50e2c44b7bec820dabd813
   m_configObjects: {}

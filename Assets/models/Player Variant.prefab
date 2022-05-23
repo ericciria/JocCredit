@@ -5433,6 +5433,10 @@ PrefabInstance:
       propertyPath: bloodEfect
       value: 
       objectReference: {fileID: 560752685}
+    - target: {fileID: 8615323241990828464, guid: 9bde03b480706dd4aa1bb0273b737a6b, type: 3}
+      propertyPath: sliderhealth
+      value: 
+      objectReference: {fileID: 1048845359}
     - target: {fileID: 8615323241990828465, guid: 9bde03b480706dd4aa1bb0273b737a6b, type: 3}
       propertyPath: m_Constraints
       value: 112
@@ -5451,7 +5455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8615323242003118622, guid: 9bde03b480706dd4aa1bb0273b737a6b, type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8615323242003118622, guid: 9bde03b480706dd4aa1bb0273b737a6b, type: 3}
       propertyPath: m_Layer

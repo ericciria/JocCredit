@@ -56,7 +56,7 @@ public class MoveWalls : MonoBehaviour
     }
     void Descend()
     {
-        if (transform.position.y > -2.5)
+        if (transform.position.y > -6)
         {
             transform.position += new Vector3(0, -Time.deltaTime*4, 0);
         }

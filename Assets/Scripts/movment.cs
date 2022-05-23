@@ -27,7 +27,7 @@ public class movment : MonoBehaviour
     void Start()
     {
         cam1.SetActive(false);
-        primeraPersona = false;
+        primeraPersona = true;
         player = transform.gameObject.GetComponentInChildren<PlayerController>();
     }
 

@@ -106,7 +106,7 @@ public class BoxCamera : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && completedRoom)
         {
             foreach (enemigo enemy in enemies)
             {
