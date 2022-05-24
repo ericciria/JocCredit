@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Augmenta la velocitat
   effect: Incrementa la velocitat de moviment i la velocitat de la bala
   icon: {fileID: 0}
-  speed: 1
+  speed: 2
   shootSpeed: 1
   fireRate: 0
   damage: 0

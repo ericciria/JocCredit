@@ -44,6 +44,7 @@ public class gun : MonoBehaviour
         bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * player.shootSpeed;
         bullet.GetComponent<MeshRenderer>().material.color = color;
         bullet.transform.localScale = tamanyBala;
+        bullet.GetComponent<Bullet>().extraAttack = player.attack;
         yield return new WaitForSeconds(1/player.shootRate);
         cantshoot = true;
 

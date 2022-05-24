@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public bool playerInBox;
 
-    public float shootSpeed, shootRate, speed, attack, baseShootSpeed, baseShootRate, baseSpeed, baseAttack;
-    public int baseMaxHealth, maxHealth, health;
+    public float shootSpeed, shootRate, speed, baseShootSpeed, baseShootRate, baseSpeed;
+    public int baseMaxHealth, maxHealth, health, baseAttack, attack;
     public gun gun;
     private float r;
     private float g;
@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
         shootRate = baseShootRate;
         baseShootSpeed = 10;
         shootSpeed = baseShootSpeed;
+        baseMaxHealth = 50;
+        maxHealth = baseMaxHealth;
 
         playerInBox = false;
     }

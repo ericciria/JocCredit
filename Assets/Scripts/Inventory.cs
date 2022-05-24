@@ -5,8 +5,8 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     PlayerController player;
-    public int maxHealth;
-    public float shootSpeed, shootRate, speed, attack;
+    public int maxHealth, attack;
+    public float shootSpeed, shootRate, speed;
     public Vector3 tamanyBala;
     void Start()
     {
@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
         shootRate = 0;
         speed = 0;
         attack = 0;
+        maxHealth = 0;
         tamanyBala = new Vector3(0,0,0);
     }
 
@@ -28,7 +29,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UpdateStats(float shootSpeed1, float shootRate1, float speed1, float attack1, int maxHealth1, Vector3 tamanyBala1)
+    public void UpdateStats(float shootSpeed1, float shootRate1, float speed1, int attack1, int maxHealth1, Vector3 tamanyBala1)
     {
         shootSpeed += shootSpeed1;
         shootRate += shootRate1;
@@ -36,39 +37,40 @@ public class Inventory : MonoBehaviour
         attack += attack1;
         maxHealth += maxHealth1;
         tamanyBala += tamanyBala1;
-        
-        if (shootRate < 0.4)
-        {
-            shootRate = 0.4f;
-        }
-        else if (shootRate > 10)
-        {
-            shootRate = 10;
-        }
-        if (speed < 0.4)
-        {
-            speed = 0.4f;
-        }
-        else if (speed > 10)
-        {
-            speed = 10;
-        }
-        if (shootSpeed < speed*2)
-        {
-            shootSpeed = speed*2;
-        }
-        if (shootSpeed < 4)
-        {
-            shootSpeed = 4;
-        }
-        else if (shootSpeed > 50)
-        {
-            shootSpeed = 50;
-        }
+
         UpdatePlayer(shootSpeed, shootRate, speed, attack, maxHealth);
+
+        if (player.shootRate < 0.4)
+        {
+            player.shootRate = 0.4f;
+        }
+        else if (player.shootRate > 10)
+        {
+            player.shootRate = 10;
+        }
+        if (player.speed < 0.4)
+        {
+            player.speed = 0.4f;
+        }
+        else if (player.speed > 10)
+        {
+            player.speed = 10;
+        }
+        if (player.shootSpeed < player.speed *2)
+        {
+            player.shootSpeed = player.speed *2;
+        }
+        if (player.shootSpeed < 4)
+        {
+            player.shootSpeed = 4;
+        }
+        else if (player.shootSpeed > 50)
+        {
+            player.shootSpeed = 50;
+        }
     }
 
-    public void UpdatePlayer(float shootSpeed, float shootRate, float speed, float attack, int maxHealth)
+    public void UpdatePlayer(float shootSpeed, float shootRate, float speed, int attack, int maxHealth)
     {
         player.shootSpeed = player.baseShootSpeed + shootSpeed;
         player.shootRate = player.baseShootRate + shootRate;
