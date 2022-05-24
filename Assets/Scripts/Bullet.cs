@@ -54,10 +54,10 @@ public class Bullet : MonoBehaviour
                         {
                             //enemyShoot.sang.Play();
                             enemyShoot.vida--;
-                            //enemyShoot.sliderhealth.fillAmount = (float)enemyShoot.vida / enemyShoot.maxVida;
+                            enemyShoot.sliderhealth.fillAmount = (float)enemyShoot.vida / enemyShoot.maxVida;
                             if (enemyShoot.vida == 5)
                             {
-                                //StartCoroutine(RebreMal(enemyShoot));
+                                StartCoroutine(RebreMal(enemyShoot));
                             }
                             else if (enemyShoot.vida <= 0 && !enemyShoot.dead)
                             {
@@ -80,6 +80,18 @@ public class Bullet : MonoBehaviour
     }
 
     public IEnumerator RebreMal(enemigo enemy)
+    {
+        enemy.comprovar = false;
+        enemy.anim.Play("hurt", -1, 0f);
+        yield return new WaitForSeconds(2.5f);
+        if (!enemy.dead)
+        {
+            enemy.comprovar = true;
+        }
+        Destroy(gameObject);
+    }
+
+    public IEnumerator RebreMal(enemyshoot enemy)
     {
         enemy.comprovar = false;
         enemy.anim.Play("hurt", -1, 0f);
