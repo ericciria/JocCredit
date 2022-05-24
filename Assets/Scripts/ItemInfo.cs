@@ -14,7 +14,7 @@ public class ItemInfo : MonoBehaviour
 
     private void Start()
     {
-        tuto.Pause();
+        //tuto.Pause();
     }
     private void Update()
     {
@@ -39,12 +39,15 @@ public class ItemInfo : MonoBehaviour
 
 
             tuto.Play();
+            StartCoroutine(Destruir());
 
             //Destroy(gameObject);
         }
     }
-    private void OnTriggerExit(Collider other)
+    IEnumerator Destruir()
     {
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
+
 }

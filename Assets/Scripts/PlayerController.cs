@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         shootSpeed = baseShootSpeed;
         baseMaxHealth = 50;
         maxHealth = baseMaxHealth;
+        health = maxHealth;
 
         playerInBox = false;
     }

@@ -27,9 +27,10 @@ public class movment : MonoBehaviour
 
     void Start()
     {
-        tuto = GetComponent<AudioSource>();
-        tuto.Play();
+        //tuto = GetComponent<AudioSource>();
+        //tuto.Play();
         cam1.SetActive(false);
+        cam3 = GameObject.Find("MainCamera");
         primeraPersona = true;
         player = transform.gameObject.GetComponentInChildren<PlayerController>();
     }
