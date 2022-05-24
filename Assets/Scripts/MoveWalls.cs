@@ -18,8 +18,6 @@ public class MoveWalls : MonoBehaviour
         illaX = illa.bounds.size.x;
         murs[0] = murs[murs.Length - 1];
         System.Array.Resize(ref murs, murs.Length - 1);
-
-        Debug.LogWarning(murs.Length);
         
         if (murs.Length == 8)
         {

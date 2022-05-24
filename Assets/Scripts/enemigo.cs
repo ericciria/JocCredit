@@ -21,7 +21,7 @@ public class enemigo : MonoBehaviour
 
     public bool perseguir, dead, atacant;
 
-    public bool comprovar;
+    public bool comprovar, isHurt;
 
     public int vida,maxVida;
 
@@ -47,6 +47,7 @@ public class enemigo : MonoBehaviour
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
         jugador = player.transform;
         vida = maxVida;
+        isHurt = false;
     }
 
     // Update is called once per frame

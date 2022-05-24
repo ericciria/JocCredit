@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class movment : MonoBehaviour
 {
-    public int vida;
     private Vector2 moveInput;
     public float speedH = 2.0f;
     public float speedV = 2.0f;
