@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a174daa5529634084810223e334fb1, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
-  name: 
-  description: 
+  name: Bomb
+  description: Augmenta l'atec en 2
   effect: 
   icon: {fileID: 0}
   speed: 0
   shootSpeed: 0
   fireRate: 0
-  damage: 0
+  damage: 2
   health: 0
-  tamanyBala: {x: 0, y: 0, z: 0}
+  tamanyBala: {x: 0.1, y: 0.1, z: 0.1}

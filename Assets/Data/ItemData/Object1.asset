@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a174daa5529634084810223e334fb1, type: 3}
   m_Name: Object1
   m_EditorClassIdentifier: 
-  name: Item1
+  name: Object1
   description: Item1_Description
   effect: Blue
   icon: {fileID: 0}
