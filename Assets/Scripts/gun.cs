@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class gun : MonoBehaviour
 {
+    AudioSource tuto;
     public Transform bulletSpawnPoint;
     public GameObject bulletPrefab;
     bool cantshoot;
@@ -24,7 +25,7 @@ public class gun : MonoBehaviour
     }
     void Update()
     {
-
+        tuto = GetComponent<AudioSource>();
         if (Input.GetMouseButton(0))
         {
             if (cantshoot)
@@ -38,6 +39,7 @@ public class gun : MonoBehaviour
     {
         cantshoot = false;
         flash.Play();
+        tuto.Play();
         var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * player.shootSpeed;
         bullet.GetComponent<MeshRenderer>().material.color = color;

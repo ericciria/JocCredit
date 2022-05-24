@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject, life);
         mr = GetComponent<MeshRenderer>();
+
     }
 
     private void OnTriggerEnter(Collider other)

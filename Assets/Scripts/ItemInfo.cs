@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class ItemInfo : MonoBehaviour
 {
+
+
+    AudioSource tuto;
     public Item info;
     private Inventory player;
     private PlayerController playerC;
 
+
+    private void Start()
+    {
+        tuto.Pause();
+    }
     private void Update()
     {
+        tuto = GetComponent<AudioSource>();
         float y = Mathf.PingPong(Time.time, 4)/4;
         transform.position = new Vector3(transform.position.x, y+1, transform.position.z);
     }
@@ -27,7 +36,15 @@ public class ItemInfo : MonoBehaviour
                 playerC.gun.color = Color.blue;
             }
             player.UpdateStats(info.ShootSpeed, info.FireRate, info.Speed, info.Damage, info.Health, info.TamanyBala);
-            Destroy(gameObject);
+
+
+            tuto.Play();
+
+            //Destroy(gameObject);
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        Destroy(gameObject);
     }
 }

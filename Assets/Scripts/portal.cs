@@ -5,28 +5,36 @@ using UnityEngine;
 
 public class portal : MonoBehaviour
 {
-    public Transform Target;
-    public GameObject Theplayer;
-    public GameObject cam3;
-    public GameObject cam1;
     AudioSource tuto;
     private void Awake()
     {
         tuto = GetComponent<AudioSource>();
+        Invoke("audiFinished", tuto.clip.length);
         tuto.Stop();
     }
 
+    void audioFinished()
+    {
+       
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        Theplayer.transform.position = Target.transform.position;
         tuto.Play();
 
         if (other.tag == "Player")
         {
-            Debug.Log("HOla");
-            other.GetComponentInParent<movment>().primeraPersona = true;
+            Debug.Log("Hola");
+            tuto.Play();
+           
+
+
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        tuto.Pause();
+    }
+
 }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class movment : MonoBehaviour
 {
+    AudioSource tuto;
     public int vida;
     private Vector2 moveInput;
     public float speedH = 2.0f;
@@ -26,6 +27,8 @@ public class movment : MonoBehaviour
 
     void Start()
     {
+        tuto = GetComponent<AudioSource>();
+        tuto.Play();
         cam1.SetActive(false);
         primeraPersona = true;
         player = transform.gameObject.GetComponentInChildren<PlayerController>();
@@ -33,8 +36,16 @@ public class movment : MonoBehaviour
 
     void Update()
     {
-      
 
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        {
+            tuto.Play();
+            Debug.Log("Manel");
+        }
+        else
+        {
+            
+        }
 
         if (player.speed < 5)
         {
@@ -46,6 +57,7 @@ public class movment : MonoBehaviour
         }
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
+
 
 
         if (Input.GetKeyDown(KeyCode.U))

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class enemigo : MonoBehaviour
 {
+    AudioSource tuto;
 
     public Animator anim;
 
@@ -35,6 +36,7 @@ public class enemigo : MonoBehaviour
 
     private void Awake()
     {
+        tuto = GetComponent<AudioSource>();
         sang = GetComponentInChildren<ParticleSystem>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -42,6 +44,7 @@ public class enemigo : MonoBehaviour
     }
     void Start()
     {
+        tuto.Pause();
         comprovar = true;
         dead = false;
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
@@ -52,7 +55,8 @@ public class enemigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+       
+       
         if (comprovar && !dead)
         {
             estarAlerta = Physics.CheckSphere(transform.position, rangoAlerta, capaDelJugador);
@@ -66,6 +70,7 @@ public class enemigo : MonoBehaviour
 
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(jugador.position.x, transform.position.y, jugador.position.z), speed * Time.deltaTime);
                 anim.SetBool("perseguir", true);
+                tuto.Play();
             }
             else if(estarAlerta && estarAprop && !atacant)
             {
@@ -75,6 +80,7 @@ public class enemigo : MonoBehaviour
             else
             {
                 anim.SetBool("perseguir", false);
+                tuto.Pause();
             }
         }
 
