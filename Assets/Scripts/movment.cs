@@ -16,6 +16,7 @@ public class movment : MonoBehaviour
 
     public GameObject cam3;
     public GameObject cam1;
+    private GameObject cap;
 
     public PlayerController player;
     public bool primeraPersona;
@@ -27,11 +28,13 @@ public class movment : MonoBehaviour
 
     void Start()
     {
-        tuto = GetComponent<AudioSource>();
-        tuto.Play();
+        //tuto = GetComponent<AudioSource>();
+        //tuto.Play();
         cam1.SetActive(false);
+        cam3 = GameObject.Find("MainCamera");
         primeraPersona = true;
         player = transform.gameObject.GetComponentInChildren<PlayerController>();
+        cap = GameObject.Find("/Player/Body/Cube");
     }
 
     void Update()
@@ -73,10 +76,12 @@ public class movment : MonoBehaviour
         if (primeraPersona)
         {
             FirstPersonMovement();
+            cap.SetActive(false);
         }
         else
         {
             ThirdPersonMovement();
+            cap.SetActive(true);
         }
     }
 

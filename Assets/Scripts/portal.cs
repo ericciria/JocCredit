@@ -20,20 +20,22 @@ public class portal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        tuto.Play();
+        //tuto.Play();
 
         if (other.tag == "Player")
         {
             Debug.Log("Hola");
             tuto.Play();
-           
-
-
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        tuto.Pause();
+        if (other.tag == "Player")
+        {
+            Debug.Log("Hola");
+            tuto.Pause();
+        }
+        //tuto.Pause();
     }
 
 }

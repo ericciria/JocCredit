@@ -43,6 +43,7 @@ public class Bullet : MonoBehaviour
                             {
                                 enemy.comprovar = false;
                                 enemy.dead = true;
+                                enemy.so.Stop();
                                 enemy.anim.Play("dead", -1, 0f);
                                 other.GetComponent<BoxCollider>().enabled = false;
                             }
@@ -65,7 +66,7 @@ public class Bullet : MonoBehaviour
                             {
                                 enemyShoot.comprovar = false;
                                 enemyShoot.dead = true;
-                               enemyShoot.anim.Play("dead", -1, 0f);
+                                enemyShoot.anim.Play("dead", -1, 0f);
                                 other.GetComponent<BoxCollider>().enabled = false;
                             }
                         }
