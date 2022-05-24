@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BoxCamera : MonoBehaviour
 {
@@ -46,6 +47,10 @@ public class BoxCamera : MonoBehaviour
         checkIfCanSpawn();
 
         int randomNumber = Random.Range(1, 5);
+        if (SceneManager.GetActiveScene().name.Equals("Nivell2")) { }
+        {
+            randomNumber *= 2;
+        }
         int i = 0;
         enemies = new enemigo[randomNumber];
         Debug.LogWarning(randomNumber);
