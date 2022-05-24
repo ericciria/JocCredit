@@ -21,6 +21,7 @@ public class BoxCamera : MonoBehaviour
     public GameObject enemyPrefab2;
     public GameObject enemyPrefab3;
     public enemigo[] enemies;
+    public enemyshoot[] enemies2;
     private bool canCheck, checkingIfClear;
 
 
@@ -44,8 +45,7 @@ public class BoxCamera : MonoBehaviour
 
         completedRoom = false;
 
-        checkIfCanSpawn();
-
+        // Spawnejar zombies, entre 1 i 5
         int randomNumber = Random.Range(1, 5);
         if (SceneManager.GetActiveScene().name.Equals("Nivell2")) { }
         {
@@ -53,12 +53,28 @@ public class BoxCamera : MonoBehaviour
         }
         int i = 0;
         enemies = new enemigo[randomNumber];
-        Debug.LogWarning(randomNumber);
         while (i < randomNumber)
         {
             if (enemyPrefab1 != null)
             {
                 enemies[i] = SpawnEnemy(enemyPrefab1).GetComponent<enemigo>();
+            }
+            i++;
+        }
+
+        // Spawnejar tio que dispara, entre 1 i 5
+        randomNumber = Random.Range(1, 5);
+        if (SceneManager.GetActiveScene().name.Equals("Nivell2")) { }
+        {
+            randomNumber *= 2;
+        }
+        i = 0;
+        enemies2 = new enemyshoot[randomNumber];
+        while (i < randomNumber)
+        {
+            if (enemyPrefab1 != null)
+            {
+                enemies2[i] = SpawnEnemy(enemyPrefab2).GetComponent<enemyshoot>();
             }
             i++;
         }
@@ -139,6 +155,13 @@ public class BoxCamera : MonoBehaviour
                 alive++;
             }
         }
+        foreach (enemyshoot enemy in enemies2)
+        {
+            if (!enemy.dead)
+            {
+                alive++;
+            }
+        }
         yield return new WaitForSeconds(2);
         if(alive == 0)
         {
@@ -184,7 +207,16 @@ public class BoxCamera : MonoBehaviour
 
     private Vector3 RandomPointOnCircleEdge()
     {
-        var vector2 = Random.insideUnitCircle * illa.transform.localScale.x * 1.2f;
+        float radius;
+        if(illa.transform.localScale.x> illa.transform.localScale.z)
+        {
+            radius = illa.transform.localScale.z;
+        }
+        else
+        {
+            radius = illa.transform.localScale.x;
+        }
+        var vector2 = Random.insideUnitCircle * radius;
         return (new Vector3(vector2.x, 0, vector2.y) + this.transform.position);
     }
 

@@ -13,7 +13,7 @@ public class Item : ScriptableObject
     [SerializeField] private float speed;
     [SerializeField] private float shootSpeed;
     [SerializeField] private float fireRate;
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private int health;
     [SerializeField] private Vector3 tamanyBala;
 
@@ -66,7 +66,7 @@ public class Item : ScriptableObject
             return fireRate;
         }
     }
-    public float Damage
+    public int Damage
     {
         get
         {

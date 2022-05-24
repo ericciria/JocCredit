@@ -105,16 +105,4 @@ public class Bullet : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
-    public IEnumerator RebreMal(enemyshoot enemy)
-    {
-        enemy.comprovar = false;
-        enemy.anim.Play("hurt", -1, 0f);
-        yield return new WaitForSeconds(2.5f);
-        if (!enemy.dead)
-        {
-            enemy.comprovar = true;
-        }
-        Destroy(gameObject);
-    }
 }
