@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
 
     public Image sliderhealth;
 
+    private bool canCheck;
+    public Vector3 lastPosition;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -67,6 +70,7 @@ public class PlayerController : MonoBehaviour
         health = maxHealth;
 
         playerInBox = false;
+        canCheck = true;
     }
 
     void Update()
@@ -82,6 +86,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
+        }
+        if (isGrounded && canCheck)
+        {
+            StartCoroutine(CheckPosition());
         }
     }
 
@@ -100,10 +108,23 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("walk", true);
         }
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("terrain"))
+        {
+            isGrounded = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("terrain"))
+        {
+            isGrounded = false;
+        }
+    }
     void OnCollisionStay()
     {
-        isGrounded = true;
+        //isGrounded = true;
     }
     private Ray GetCameraRay()
     {
@@ -124,5 +145,14 @@ public class PlayerController : MonoBehaviour
         bloodEfect.color = c;
 
     }
-    
+
+    IEnumerator CheckPosition()
+    {
+        canCheck = false;
+        lastPosition = transform.position;
+        yield return new WaitForSeconds(2);
+        canCheck = true;
+    }
+
+
 }

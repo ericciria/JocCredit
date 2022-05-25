@@ -38,7 +38,7 @@ public class movment : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        /*if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
         {
             tuto.Play();
             Debug.Log("Manel");
@@ -46,7 +46,7 @@ public class movment : MonoBehaviour
         else
         {
             
-        }
+        }*/
 
         if (player.speed < 5)
         {
