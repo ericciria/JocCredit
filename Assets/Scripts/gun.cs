@@ -13,6 +13,7 @@ public class gun : MonoBehaviour
     public Color color;
     public Vector3 tamanyBala;
     public ParticleSystem flash;
+    private movment asd;
 
     private void Start()
     {
@@ -21,12 +22,13 @@ public class gun : MonoBehaviour
         color = new Color(0.5f, 0.5f, 0.5f);
         tamanyBala = new Vector3(0.3f,0.3f,0.3f);
         flash = GetComponentInChildren<ParticleSystem>();
+        asd = player.gameObject.GetComponentInParent<movment>();
 
     }
     void Update()
     {
         tuto = GetComponent<AudioSource>();
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !asd.isPaused)
         {
             if (cantshoot)
             {

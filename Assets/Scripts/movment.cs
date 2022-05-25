@@ -25,6 +25,7 @@ public class movment : MonoBehaviour
 
     private float xRotation = 0.0f;
     private float yRotation = 0.0f;
+    public bool isPaused;
 
     void Start()
     {
@@ -35,19 +36,15 @@ public class movment : MonoBehaviour
         primeraPersona = true;
         player = transform.gameObject.GetComponentInChildren<PlayerController>();
         cap = GameObject.Find("/Player/Body/Cube");
+        isPaused = false;
     }
 
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            tuto.Play();
-            Debug.Log("Manel");
-        }
-        else
-        {
-            
+            isPaused = !isPaused;
         }
 
         if (player.speed < 5)
@@ -73,16 +70,20 @@ public class movment : MonoBehaviour
             primeraPersona = false;
 
         }
-        if (primeraPersona)
+        if (!isPaused)
         {
-            FirstPersonMovement();
-            cap.SetActive(false);
+            if (primeraPersona)
+            {
+                FirstPersonMovement();
+                cap.SetActive(false);
+            }
+            else
+            {
+                ThirdPersonMovement();
+                cap.SetActive(true);
+            }
         }
-        else
-        {
-            ThirdPersonMovement();
-            cap.SetActive(true);
-        }
+        
     }
 
     private void ThirdPersonMovement()
