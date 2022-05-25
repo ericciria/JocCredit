@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 
 {
-
+    public AudioSource so;
     public Image bloodEfect;
     [SerializeField] float jumpForce = 2.0f;
     
@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        so = GetComponent<AudioSource>();
         a = Mathf.Clamp(a, 0, 1f);
         a -= 0.15f*Time.deltaTime;
         changeColor();
@@ -135,6 +136,7 @@ public class PlayerController : MonoBehaviour
     {
         health -= vida;
         a += 0.30f;
+        so.Play();
         changeColor();
         sliderhealth.fillAmount = (float)health / maxHealth;
     }
