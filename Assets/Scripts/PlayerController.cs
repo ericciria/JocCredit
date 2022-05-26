@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public bool playerInBox;
 
     public float shootSpeed, shootRate, speed, baseShootSpeed, baseShootRate, baseSpeed;
-    public int baseMaxHealth, maxHealth, health, baseAttack, attack;
+    public int baseMaxHealth, maxHealth, health, baseAttack, attack, jumpsLeft;
     public gun gun;
     private float r;
     private float g;
@@ -83,10 +83,9 @@ public class PlayerController : MonoBehaviour
 
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            Jump();
         }
         if (isGrounded && canCheck)
         {
@@ -109,23 +108,17 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("walk", true);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision asd)
     {
-        if (collision.gameObject.tag.Equals("terrain"))
+        if (!asd.collider.isTrigger && !asd.collider.tag.Equals("Mur"))
         {
             isGrounded = true;
+            jumpsLeft = 2;
         }
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("terrain"))
-        {
-            isGrounded = false;
-        }
-    }
-    void OnCollisionStay()
-    {
-        //isGrounded = true;
+        isGrounded = false;
     }
     private Ray GetCameraRay()
     {
@@ -154,6 +147,15 @@ public class PlayerController : MonoBehaviour
         lastPosition = transform.position;
         yield return new WaitForSeconds(2);
         canCheck = true;
+    }
+
+    private void Jump()
+    {
+        if (jumpsLeft>0)
+        {
+            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            jumpsLeft--;
+        }
     }
 
 

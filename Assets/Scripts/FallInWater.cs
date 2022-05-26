@@ -10,6 +10,7 @@ public class FallInWater : MonoBehaviour
         if (other.gameObject.tag.Equals("Player"))
         {
             player = other.GetComponent<PlayerController>();
+            player.activarSang(1);
             player.transform.position = player.lastPosition;
         }
     }
