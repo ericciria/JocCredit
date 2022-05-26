@@ -56,7 +56,7 @@ public class enemyshoot : MonoBehaviour
     void Update()
     {
 
-        if (comprovar && !dead)
+        if (comprovar && !dead && !player.isDead)
         {
             estarAlerta = Physics.CheckSphere(transform.position, rangoAlerta, capaDelJugador);
             if (estarAlerta)

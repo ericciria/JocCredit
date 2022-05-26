@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public Image bloodEfect;
     [SerializeField] float jumpForce = 2.0f;
     
-    Animator anim;
+    public Animator anim;
 
     public float m_Thrust = 2000f;
 
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 jump;
     public bool isGrounded;
     public bool playerInBox;
+    public bool cameraMort;
 
     public float shootSpeed, shootRate, speed, baseShootSpeed, baseShootRate, baseSpeed;
     public int baseMaxHealth, maxHealth, health, baseAttack, attack, jumpsLeft;
@@ -31,6 +32,10 @@ public class PlayerController : MonoBehaviour
     private float g;
     private float b;
     private float a;
+
+    public GameObject camGameOver;
+
+    public bool isDead;
 
     public Image sliderhealth;
 
@@ -41,11 +46,12 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         gun = GetComponentInChildren<gun>();
-
+        camGameOver = GameObject.Find("/cameraGameOver");
     }
 
     private void Start()
     {
+        
         health = maxHealth;
         sliderhealth.fillAmount = 1;
         r = bloodEfect.color.r;
@@ -71,6 +77,8 @@ public class PlayerController : MonoBehaviour
 
         playerInBox = false;
         canCheck = true;
+        cameraMort = true;
+        
     }
 
     void Update()
@@ -79,7 +87,7 @@ public class PlayerController : MonoBehaviour
         a = Mathf.Clamp(a, 0, 1f);
         a -= 0.15f*Time.deltaTime;
         changeColor();
-
+       
 
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
@@ -90,6 +98,11 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && canCheck)
         {
             StartCoroutine(CheckPosition());
+        }
+        if (cameraMort)
+        {
+            cameraMort = false;
+            camGameOver.SetActive(false);
         }
     }
 
