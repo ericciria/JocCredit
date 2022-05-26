@@ -131,7 +131,17 @@ public class BoxCamera : MonoBehaviour
         {
             foreach (enemigo enemy in enemies)
             {
-                Destroy(enemy.gameObject);
+                if (enemy != null)
+                {
+                    Destroy(enemy.gameObject);
+                }
+            }
+            foreach (enemyshoot enemy in enemies2)
+            {
+                if (enemy != null)
+                {
+                    Destroy(enemy.gameObject);
+                }
             }
         }
     }

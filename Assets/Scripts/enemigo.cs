@@ -30,9 +30,6 @@ public class enemigo : MonoBehaviour
     public Rigidbody rb;
     private PlayerController player;
 
-    public GameObject camGameOver;
-    public GameObject cam3;
-    public GameObject cam1;
     public Image sliderhealth;
 
 
@@ -44,10 +41,6 @@ public class enemigo : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         sliderhealth= GetComponentInChildren<Image>();
-
-        cam1 = GameObject.Find("/Player/Body/primeraPerson");
-        cam3 = GameObject.Find("/MainCamera");
-        camGameOver = GameObject.Find("/cameraGameOver");
     }
     void Start()
     {
@@ -93,6 +86,10 @@ public class enemigo : MonoBehaviour
                 so.Pause();
             }
         }
+        else
+        {
+            anim.SetBool("perseguir", false);
+        }
 
     }
 
@@ -109,19 +106,6 @@ public class enemigo : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         anim.SetBool("atack", false);
         atacant = false;
-        if (player.health <= 0)
-        {
-            player.isDead = true;
-
-            camGameOver.SetActive(true);
-            camGameOver.GetComponent<cameraPlay>().start = true;
-            
-            cam3.SetActive(false);
-            cam1.SetActive(false);
-            so.Pause();
-            player.anim.Play("dead", -1, 0f);
-            anim.SetBool("perseguir", false);
-        }
         comprovar = true;
 
     }
