@@ -28,7 +28,7 @@ public class gun : MonoBehaviour
     void Update()
     {
         tuto = GetComponent<AudioSource>();
-        if (Input.GetMouseButton(0) && !asd.isPaused)
+        if (Input.GetMouseButton(0) && !asd.isPaused && !player.isDead)
         {
             if (cantshoot)
             {

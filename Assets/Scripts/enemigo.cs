@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class enemigo : MonoBehaviour
 {
+
+    public GameObject bullet;
+    public GameObject sangre;
+
     public AudioSource so;
 
     public Animator anim;
@@ -33,6 +37,7 @@ public class enemigo : MonoBehaviour
     public GameObject camGameOver;
     public GameObject cam3;
     public GameObject cam1;
+    public GameObject gameOver;
     public Image sliderhealth;
 
 
@@ -46,12 +51,16 @@ public class enemigo : MonoBehaviour
         sliderhealth= GetComponentInChildren<Image>();
 
         cam1 = GameObject.Find("/Player/Body/primeraPerson");
+        gameOver = GameObject.Find("/Player/gameOver");
+        bullet = GameObject.Find("/Player/Body/pistola");
         cam3 = GameObject.Find("/MainCamera");
         camGameOver = GameObject.Find("/cameraGameOver");
+        sangre = GameObject.Find("/Player/Sang");
     }
     void Start()
     {
         so.Pause();
+
         comprovar = true;
         dead = false;
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
@@ -59,7 +68,7 @@ public class enemigo : MonoBehaviour
         jugador = player.transform;
         vida = maxVida;
         isHurt = false;
-
+        gameOver.SetActive(false);
     }
 
     // Update is called once per frame
@@ -120,6 +129,10 @@ public class enemigo : MonoBehaviour
             cam1.SetActive(false);
             so.Pause();
             player.anim.Play("dead", -1, 0f);
+            bullet.SetActive(false);
+            sangre.SetActive(false);
+            gameOver.SetActive(true);
+
             anim.SetBool("perseguir", false);
         }
         comprovar = true;
