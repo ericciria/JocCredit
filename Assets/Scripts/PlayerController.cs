@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public bool cameraMort;
 
     public float shootSpeed, shootRate, speed, baseShootSpeed, baseShootRate, baseSpeed;
-    public int baseMaxHealth, maxHealth, health, baseAttack, attack;
+    public int baseMaxHealth, maxHealth, health, baseAttack, attack, jumpsLeft;
     public gun gun;
     private float r;
     private float g;
@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     public bool isDead;
 
     public Image sliderhealth;
+
+    private bool canCheck;
+    public Vector3 lastPosition;
 
     private void Awake()
     {
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour
         health = maxHealth;
 
         playerInBox = false;
+        canCheck = true;
         cameraMort = true;
         
     }
@@ -87,10 +91,13 @@ public class PlayerController : MonoBehaviour
 
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            Jump();
+        }
+        if (isGrounded && canCheck)
+        {
+            StartCoroutine(CheckPosition());
         }
         if (cameraMort)
         {
@@ -114,10 +121,17 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("walk", true);
         }
     }
-
-    void OnCollisionStay()
+    void OnCollisionStay(Collision asd)
     {
-        isGrounded = true;
+        if (!asd.collider.isTrigger && !asd.collider.tag.Equals("Mur"))
+        {
+            isGrounded = true;
+            jumpsLeft = 2;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
     }
     private Ray GetCameraRay()
     {
@@ -140,5 +154,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    
+    IEnumerator CheckPosition()
+    {
+        canCheck = false;
+        lastPosition = transform.position;
+        yield return new WaitForSeconds(2);
+        canCheck = true;
+    }
+
+    private void Jump()
+    {
+        if (jumpsLeft>0)
+        {
+            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            jumpsLeft--;
+        }
+    }
+
+
 }

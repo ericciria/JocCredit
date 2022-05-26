@@ -68,6 +68,7 @@ MonoBehaviour:
   enemyPrefab2: {fileID: 2690597341181165559, guid: 4814940d72e93fa489918a0182adb95f, type: 3}
   enemyPrefab3: {fileID: 0}
   enemies: []
+  enemies2: []
 --- !u!64 &334560456
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -107,15 +108,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.06318944
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.4168513
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.02577755
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2455283547449522604, guid: dcae45aa25d90194fa1ffc51a40b0ff5, type: 3}
       propertyPath: m_LocalRotation.w

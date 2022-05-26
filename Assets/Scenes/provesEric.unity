@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -174,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98772902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -81.7, y: 1.13, z: 15.98}
+  m_LocalPosition: {x: -102.02, y: 1.13, z: 17.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 363960898}
   m_Layer: 0
   m_Name: pier (1)
-  m_TagString: Untagged
+  m_TagString: terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -661,9 +661,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100000, guid: 6e654008c0c551d41b2f83f329e79d6f, type: 3}
+      propertyPath: m_TagString
+      value: terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 6e654008c0c551d41b2f83f329e79d6f, type: 3}
       propertyPath: m_Name
       value: island1_design2_c4d
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6e654008c0c551d41b2f83f329e79d6f, type: 3}
+      propertyPath: m_TagString
+      value: terrain
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6e654008c0c551d41b2f83f329e79d6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1296,7 +1304,7 @@ GameObject:
   - component: {fileID: 988688669}
   m_Layer: 0
   m_Name: pier
-  m_TagString: Untagged
+  m_TagString: terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1377,6 +1385,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.012631199, y: 0.038635284, z: 0.0106449565}
   m_Center: {x: 0.003922168, y: 0.0039279484, z: -0.005}
+--- !u!1 &1001738991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7794583628508180427, guid: 680cabdc1a0cd2d4ea69aa905308f48b, type: 3}
+  m_PrefabInstance: {fileID: 1991763478259267473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1001738995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001738991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be3530a933ecb5b498116e136638d446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1808807097}
+  isPaused: 0
 --- !u!1 &1005779895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,6 +1571,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2323411496fbaac478119b64cf84b3b4, type: 3}
       propertyPath: m_Name
       value: plataforma (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2323411496fbaac478119b64cf84b3b4, type: 3}
+      propertyPath: m_TagString
+      value: terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2323411496fbaac478119b64cf84b3b4, type: 3}
@@ -2089,7 +2120,7 @@ GameObject:
   - component: {fileID: 2086455298}
   m_Layer: 0
   m_Name: playa
-  m_TagString: Untagged
+  m_TagString: terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3250,7 +3281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7794583628508180426, guid: 680cabdc1a0cd2d4ea69aa905308f48b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.67
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7794583628508180426, guid: 680cabdc1a0cd2d4ea69aa905308f48b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3297,6 +3328,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 363960894, guid: 1c452b941715f0243864f51ea2cea58f, type: 3}
+      propertyPath: m_TagString
+      value: terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 363960895, guid: 1c452b941715f0243864f51ea2cea58f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.278
@@ -3324,6 +3359,10 @@ PrefabInstance:
     - target: {fileID: 1297421596784652743, guid: 1c452b941715f0243864f51ea2cea58f, type: 3}
       propertyPath: m_Name
       value: playa
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297421596784652743, guid: 1c452b941715f0243864f51ea2cea58f, type: 3}
+      propertyPath: m_TagString
+      value: terrain
       objectReference: {fileID: 0}
     - target: {fileID: 1822425945432435581, guid: 1c452b941715f0243864f51ea2cea58f, type: 3}
       propertyPath: m_RootOrder
@@ -3368,6 +3407,10 @@ PrefabInstance:
     - target: {fileID: 1822425945432435581, guid: 1c452b941715f0243864f51ea2cea58f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8554928012656356657, guid: 1c452b941715f0243864f51ea2cea58f, type: 3}
+      propertyPath: m_TagString
+      value: terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c452b941715f0243864f51ea2cea58f, type: 3}
