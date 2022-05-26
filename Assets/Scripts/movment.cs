@@ -43,10 +43,6 @@ public class movment : MonoBehaviour
     {
         if (!player.isDead)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                isPaused = !isPaused;
-            }
 
             if (player.speed < 5)
             {

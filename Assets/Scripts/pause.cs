@@ -9,13 +9,14 @@ public class pause : MonoBehaviour
     public bool isPaused;
     private AudioSource[] allAudioSources ;
     PlayerController player;
+    movment mov;
 
     private void Start()
     {
         allAudioSources = FindObjectsOfType<AudioSource>();
-        pauseMenu.SetActive(isPaused);
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
         pauseMenu.SetActive(false);
+        mov = GameObject.Find("/Player").GetComponent<movment>();
     }
 
 
@@ -25,6 +26,8 @@ public class pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             if (!player.isDead)
             {
                 isPaused = !isPaused;
@@ -34,6 +37,7 @@ public class pause : MonoBehaviour
                 }
                 Time.timeScale = isPaused ? 0 : 1;
                 pauseMenu.SetActive(isPaused);
+                mov.isPaused = isPaused;
             }
             
         }
@@ -48,6 +52,16 @@ public class pause : MonoBehaviour
                 audioS.Pause();
             }
         }
+    }
+
+   public  void Continuar()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0 : 1;
+        pauseMenu.SetActive(isPaused);
+        mov.isPaused = isPaused;
     }
 }
  
