@@ -18,24 +18,19 @@ public class balaenemic : MonoBehaviour
     {
         if (!other.isTrigger)
         {
-                if (other.gameObject.tag.Equals("Player"))
-                {
-                    PlayerController player = other.GetComponent<PlayerController>();
-                    player.activarSang(1);
-                if (player.health <= 0)
-                {
-                    player.isDead = true;
-                    player.anim.Play("dead", -1, 0f);
-                }
-                Destroy(gameObject);
-
-
-                }
-                else if (!other.gameObject.tag.Equals("Enemy") && !other.gameObject.tag.Equals("Bullet"))
-                {
-                    Destroy(gameObject);
-                }
-
+             if (other.gameObject.tag.Equals("Player"))
+             {
+                 PlayerController player = other.GetComponent<PlayerController>();
+                 if (!player.isDead)
+                 {
+                     player.activarSang(1);
+                     Destroy(gameObject);
+                 }
+             }
+             else if (!other.gameObject.tag.Equals("Enemy") && !other.gameObject.tag.Equals("Bullet"))
+             {
+                 Destroy(gameObject);
+             }
         }
     }
 }

@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     private float a;
 
     public GameObject camGameOver;
+    public GameObject cam3;
+    public GameObject cam1;
 
     public bool isDead;
 
@@ -46,6 +48,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         gun = GetComponentInChildren<gun>();
+        cam1 = GameObject.Find("/Player/Body/primeraPerson");
+        cam3 = GameObject.Find("/MainCamera");
         camGameOver = GameObject.Find("/cameraGameOver");
     }
 
@@ -126,7 +130,7 @@ public class PlayerController : MonoBehaviour
         if (!asd.collider.isTrigger && !asd.collider.tag.Equals("Mur"))
         {
             isGrounded = true;
-            jumpsLeft = 2;
+            jumpsLeft = 1;
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -141,6 +145,10 @@ public class PlayerController : MonoBehaviour
     public void activarSang(int vida)
     {
         health -= vida;
+        if (health <= 0)
+        {
+            Death();
+        }
         a += 0.30f;
         so.Play();
         changeColor();
@@ -169,6 +177,16 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             jumpsLeft--;
         }
+    }
+
+    public void Death()
+    {
+        isDead = true;
+        camGameOver.SetActive(true);
+        camGameOver.GetComponent<cameraPlay>().start = true;
+        cam3.SetActive(false);
+        cam1.SetActive(false);
+        anim.Play("dead", -1, 0f);
     }
 
 

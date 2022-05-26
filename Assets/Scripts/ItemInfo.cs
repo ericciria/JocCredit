@@ -46,7 +46,7 @@ public class ItemInfo : MonoBehaviour
     }
     IEnumerator Destruir()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 
