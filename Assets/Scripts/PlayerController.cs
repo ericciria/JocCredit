@@ -136,12 +136,17 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("walk", true);
         }
     }
-    void OnCollisionStay(Collision asd)
+    void OnCollisionStay(Collision collision)
     {
-        if (!asd.collider.isTrigger && !asd.collider.tag.Equals("Mur"))
+        if (!collision.collider.isTrigger && !collision.collider.tag.Equals("Mur"))
         {
-            isGrounded = true;
-            jumpsLeft = 1;
+            ContactPoint contact = collision.contacts[0];
+            if (Vector3.Dot(contact.normal, Vector3.up) > 0.5)
+            {
+                isGrounded = true;
+                jumpsLeft = 1;
+            }
+            
         }
     }
     private void OnCollisionExit(Collision collision)
