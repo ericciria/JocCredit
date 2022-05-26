@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class enemigo : MonoBehaviour
 {
+
+    public GameObject bullet;
+    public GameObject sangre;
+
     public AudioSource so;
 
     public Animator anim;
@@ -45,6 +49,7 @@ public class enemigo : MonoBehaviour
     void Start()
     {
         so.Pause();
+
         comprovar = true;
         dead = false;
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
@@ -52,7 +57,7 @@ public class enemigo : MonoBehaviour
         jugador = player.transform;
         vida = maxVida;
         isHurt = false;
-
+        gameOver.SetActive(false);
     }
 
     // Update is called once per frame

@@ -8,25 +8,34 @@ public class pause : MonoBehaviour
 
     public bool isPaused;
     private AudioSource[] allAudioSources ;
+    PlayerController player;
 
     private void Start()
     {
         allAudioSources = FindObjectsOfType<AudioSource>();
         pauseMenu.SetActive(isPaused);
+        player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
+        pauseMenu.SetActive(false);
     }
 
+
+  
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused = !isPaused;
-            if (isPaused)
+            if (!player.isDead)
             {
-                StopAllAudio();
+                isPaused = !isPaused;
+                if (isPaused)
+                {
+                    StopAllAudio();
+                }
+                Time.timeScale = isPaused ? 0 : 1;
+                pauseMenu.SetActive(isPaused);
             }
-            Time.timeScale = isPaused ? 0 : 1;
-            pauseMenu.SetActive(isPaused);
+            
         }
     }
 

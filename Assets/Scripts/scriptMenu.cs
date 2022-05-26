@@ -50,6 +50,9 @@ public class scriptMenu : MonoBehaviour
     }
 
 
-
+    public void ActivarMenu()
+    {
+        SceneManager.LoadScene("play");
+    }
 
 }
