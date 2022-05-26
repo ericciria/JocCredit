@@ -22,7 +22,12 @@ public class balaenemic : MonoBehaviour
                 {
                     PlayerController player = other.GetComponent<PlayerController>();
                     player.activarSang(1);
-                    Destroy(gameObject);
+                if (player.health <= 0)
+                {
+                    player.isDead = true;
+                    player.anim.Play("dead", -1, 0f);
+                }
+                Destroy(gameObject);
 
 
                 }
@@ -30,6 +35,7 @@ public class balaenemic : MonoBehaviour
                 {
                     Destroy(gameObject);
                 }
+
         }
     }
 }

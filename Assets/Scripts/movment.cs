@@ -41,49 +41,50 @@ public class movment : MonoBehaviour
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!player.isDead)
         {
-            isPaused = !isPaused;
-        }
-
-        if (player.speed < 5)
-        {
-            player.speed = 5;
-        }
-        else if (player.speed > 10)
-        {
-            player.speed = 10;
-        }
-        moveInput.x = Input.GetAxis("Horizontal");
-        moveInput.y = Input.GetAxis("Vertical");
-
-
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            primeraPersona = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            primeraPersona = false;
-
-        }
-        if (!isPaused)
-        {
-            if (primeraPersona)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                FirstPersonMovement();
-                cap.SetActive(false);
+                isPaused = !isPaused;
             }
-            else
+
+            if (player.speed < 5)
             {
-                ThirdPersonMovement();
-                cap.SetActive(true);
+                player.speed = 5;
+            }
+            else if (player.speed > 10)
+            {
+                player.speed = 10;
+            }
+            moveInput.x = Input.GetAxis("Horizontal");
+            moveInput.y = Input.GetAxis("Vertical");
+
+
+
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                primeraPersona = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                primeraPersona = false;
+
+            }
+            if (!isPaused)
+            {
+                if (primeraPersona)
+                {
+                    FirstPersonMovement();
+                    cap.SetActive(false);
+                }
+                else
+                {
+                    ThirdPersonMovement();
+                    cap.SetActive(true);
+                }
             }
         }
-        
     }
 
     private void ThirdPersonMovement()
