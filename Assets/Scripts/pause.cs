@@ -9,6 +9,11 @@ public class pause : MonoBehaviour
     public bool isPaused;
 
 
+    private void Start()
+    {
+        pauseMenu.SetActive(false);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
