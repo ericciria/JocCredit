@@ -1937,7 +1937,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1031142421}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1691764429}
+        m_TargetAssemblyTypeName: scriptMenu, Assembly-CSharp
+        m_MethodName: ActivarMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1031142421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2645,6 +2657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1691764428}
   - component: {fileID: 1691764427}
+  - component: {fileID: 1691764429}
   m_Layer: 0
   m_Name: menuManager
   m_TagString: Untagged
@@ -2678,6 +2691,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1691764429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691764426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0efe14e216e484a97cbd3edfc88628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Options: {fileID: 0}
+  Exit: {fileID: 0}
+  Jugar: {fileID: 0}
+  continuar: {fileID: 0}
+  opcions: {fileID: 0}
+  tornar: {fileID: 0}
+  cargar: {fileID: 0}
 --- !u!1 &1713227187
 GameObject:
   m_ObjectHideFlags: 0
