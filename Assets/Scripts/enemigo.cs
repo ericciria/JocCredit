@@ -10,6 +10,7 @@ public class enemigo : MonoBehaviour
     public GameObject bullet;
     public GameObject sangre;
 
+
     public AudioSource so;
 
     public Animator anim;
@@ -53,11 +54,11 @@ public class enemigo : MonoBehaviour
         comprovar = true;
         dead = false;
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
-      
+        
+
         jugador = player.transform;
         vida = maxVida;
         isHurt = false;
-        gameOver.SetActive(false);
     }
 
     // Update is called once per frame

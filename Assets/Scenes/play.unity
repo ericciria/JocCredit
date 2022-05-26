@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: baf41db0f2dcb1d4ca9c698f90e43fe2, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 8297ec0734ff49a4d991bceb0ab9cef1, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -451,6 +451,12 @@ MonoBehaviour:
   wall1: {fileID: 0}
   completedRoom: 0
   finished: 0
+  illa: {fileID: 0}
+  enemyPrefab1: {fileID: 0}
+  enemyPrefab2: {fileID: 0}
+  enemyPrefab3: {fileID: 0}
+  enemies: []
+  enemies2: []
 --- !u!65 &236198556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -694,6 +700,12 @@ MonoBehaviour:
   wall1: {fileID: 0}
   completedRoom: 0
   finished: 0
+  illa: {fileID: 0}
+  enemyPrefab1: {fileID: 0}
+  enemyPrefab2: {fileID: 0}
+  enemyPrefab3: {fileID: 0}
+  enemies: []
+  enemies2: []
 --- !u!65 &334924836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2377,7 +2389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1526076942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e62d518d0e50c9a469f1334e2fe62da3, type: 3}
+  m_Script: {fileID: 11500000, guid: dffc23c00fdbb1f41917606accf40fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
@@ -2496,6 +2508,12 @@ MonoBehaviour:
   wall1: {fileID: 0}
   completedRoom: 0
   finished: 0
+  illa: {fileID: 0}
+  enemyPrefab1: {fileID: 0}
+  enemyPrefab2: {fileID: 0}
+  enemyPrefab3: {fileID: 0}
+  enemies: []
+  enemies2: []
 --- !u!65 &1530779366
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3006,6 +3024,12 @@ MonoBehaviour:
   wall1: {fileID: 0}
   completedRoom: 0
   finished: 0
+  illa: {fileID: 0}
+  enemyPrefab1: {fileID: 0}
+  enemyPrefab2: {fileID: 0}
+  enemyPrefab3: {fileID: 0}
+  enemies: []
+  enemies2: []
 --- !u!65 &1772416472
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3294,6 +3318,12 @@ MonoBehaviour:
   wall1: {fileID: 0}
   completedRoom: 0
   finished: 0
+  illa: {fileID: 0}
+  enemyPrefab1: {fileID: 0}
+  enemyPrefab2: {fileID: 0}
+  enemyPrefab3: {fileID: 0}
+  enemies: []
+  enemies2: []
 --- !u!65 &2111572250
 BoxCollider:
   m_ObjectHideFlags: 0

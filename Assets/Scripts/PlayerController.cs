@@ -9,6 +9,9 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 
 {
+
+    GameObject pistola;
+
     public AudioSource so;
     public Image bloodEfect;
     [SerializeField] float jumpForce = 2.0f;
@@ -34,6 +37,8 @@ public class PlayerController : MonoBehaviour
     private float a;
 
     public GameObject camGameOver;
+
+    public GameObject mira;
     public GameObject cam3;
     public GameObject cam1;
 
@@ -43,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private bool canCheck;
     public Vector3 lastPosition;
+
+    public GameObject gameOver;
 
     private void Awake()
     {
@@ -55,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        
+       
         health = maxHealth;
         sliderhealth.fillAmount = 1;
         r = bloodEfect.color.r;
@@ -75,14 +82,18 @@ public class PlayerController : MonoBehaviour
         shootRate = baseShootRate;
         baseShootSpeed = 10;
         shootSpeed = baseShootSpeed;
-        baseMaxHealth = 50;
+        baseMaxHealth = 2;
         maxHealth = baseMaxHealth;
         health = maxHealth;
 
         playerInBox = false;
         canCheck = true;
         cameraMort = true;
-        
+        mira = GameObject.Find("Player/Sang");
+        gameOver = GameObject.Find("Player/gameOver");
+        pistola = GameObject.Find("Player/Body/pistola");
+        gameOver.SetActive(false);
+
     }
 
     void Update()
@@ -187,6 +198,13 @@ public class PlayerController : MonoBehaviour
         cam3.SetActive(false);
         cam1.SetActive(false);
         anim.Play("dead", -1, 0f);
+        gameOver.SetActive(true);
+        pistola.SetActive(false);
+        mira.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+
     }
 
 
