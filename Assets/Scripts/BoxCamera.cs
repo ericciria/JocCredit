@@ -35,7 +35,11 @@ public class BoxCamera : MonoBehaviour
         canCheck = false;
         camera = GameObject.Find("MainCamera").GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        illa = GetComponentInParent<MeshRenderer>();
+        if (GetComponentInParent<MeshRenderer>() != null)
+        {
+            illa = GetComponentInParent<MeshRenderer>();
+        }
+        
 
         if (wall1 != null)
         {
