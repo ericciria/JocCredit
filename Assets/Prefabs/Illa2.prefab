@@ -64,7 +64,7 @@ MonoBehaviour:
   completedRoom: 0
   finished: 0
   illa: {fileID: 4006503895132653492}
-  enemyPrefab1: {fileID: 5866315331279647791, guid: db51474f7188337429bce5ba2e9e32d6, type: 3}
+  enemyPrefab1: {fileID: 2565953590090439369, guid: c31325fafcb7b9a41a9286287be86bc3, type: 3}
   enemyPrefab2: {fileID: 2690597341181165559, guid: 4814940d72e93fa489918a0182adb95f, type: 3}
   enemyPrefab3: {fileID: 0}
   enemies: []

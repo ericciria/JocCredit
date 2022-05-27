@@ -9,10 +9,18 @@ public class Bullet : MonoBehaviour
     private MeshRenderer mr;
     public int extraAttack;
 
+    public Transform camTransform1, camTransform3;
+    public movment player;
+    
+
     void Awake()
     {
         Destroy(gameObject, life);
         mr = GetComponent<MeshRenderer>();
+
+        player = GameObject.Find("/Player").GetComponent<movment>();
+        camTransform3 = player.cam3.transform;
+        camTransform1 = player.cam1.transform;
 
     }
 
@@ -27,11 +35,14 @@ public class Bullet : MonoBehaviour
                 if (other.gameObject.tag.Equals("Enemy"))
                 {
                     mr.enabled = false;
-                    enemigo enemy = other.GetComponent<enemigo>();
+                    enemigo enemy = other.GetComponentInParent<enemigo>();
                     if (enemy != null)
                     {
                         if (!enemy.dead)
                         {
+                            enemy.sang.transform.LookAt(player.cam1.transform);
+                            enemy.sang.transform.position=transform.position;
+
                             enemy.sang.Play();
                             enemy.vida -= (1+extraAttack);
                             enemy.sliderhealth.fillAmount = (float)enemy.vida / enemy.maxVida;
@@ -55,7 +66,10 @@ public class Bullet : MonoBehaviour
                         Debug.LogWarning(enemyShoot);
                         if (!enemyShoot.dead)
                         {
-                            //enemyShoot.sang.Play();
+                            enemyShoot.sang.transform.LookAt(player.cam1.transform);
+                            enemyShoot.sang.transform.position = transform.position;
+
+                            enemyShoot.sang.Play();
                             enemyShoot.vida -= (1 + extraAttack);
                             enemyShoot.sliderhealth.fillAmount = (float)enemyShoot.vida / enemyShoot.maxVida;
                             if (enemyShoot.vida <= 0 && !enemyShoot.dead)
@@ -74,6 +88,13 @@ public class Bullet : MonoBehaviour
                 {
                     Destroy(gameObject);
                 }
+            }
+        }
+        else
+        {
+            if (other.gameObject.tag.Equals("EnemyPre"))
+            {
+                other.GetComponentInChildren<MeshCollisionHelper>().UpdateCollisionMesh();
             }
         }
     }

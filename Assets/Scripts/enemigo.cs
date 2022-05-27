@@ -19,7 +19,7 @@ public class enemigo : MonoBehaviour
 
     public LayerMask capaDelJugador;
 
-    bool estarAlerta, estarAprop;
+    public bool estarAlerta, estarAprop;
 
     public Transform jugador, attackPosition;
 
@@ -36,6 +36,7 @@ public class enemigo : MonoBehaviour
     private PlayerController player;
 
     public Image sliderhealth;
+    public BoxCamera illa;
 
 
 
@@ -68,12 +69,12 @@ public class enemigo : MonoBehaviour
        
         if (comprovar && !dead && !player.isDead)
         {
-            estarAlerta = Physics.CheckSphere(transform.position, rangoAlerta, capaDelJugador);
+            //estarAlerta = Physics.CheckSphere(transform.position, rangoAlerta, capaDelJugador);
+            estarAlerta = Physics.CheckSphere(illa.transform.position, rangoAlerta*2.5f, capaDelJugador);
+            Debug.LogWarning(illa);
             estarAprop = Physics.CheckSphere(transform.position, rangoAprop, capaDelJugador);
             if (estarAlerta && !estarAprop)
             {
-                //transform.LookAt(jugador);
-
 
                 transform.LookAt(new Vector3(jugador.position.x, transform.position.y, jugador.position.z));
 
@@ -120,6 +121,8 @@ public class enemigo : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, rangoAlerta);
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(illa.transform.position, rangoAlerta*2.5f);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, rangoAprop/2);
     }
