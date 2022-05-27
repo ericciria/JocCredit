@@ -20,7 +20,6 @@ public class cameraPlay : MonoBehaviour
         {
             start = false;
             transform.position = player.transform.position + new Vector3(0, 10, -10);
-            Debug.LogWarning("AAAAAAAAAAAAAAAAAAAAAAAA");
         }
         transform.LookAt(player.transform);
         transform.position = transform.position + transform.right * Time.deltaTime;

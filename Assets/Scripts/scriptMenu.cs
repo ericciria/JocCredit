@@ -28,7 +28,10 @@ public class scriptMenu : MonoBehaviour
 
     void Start()
     {
-        continuar.gameObject.SetActive(false);
+        if (continuar != null)
+        {
+            continuar.gameObject.SetActive(false);
+        }
         tornar.gameObject.SetActive(false);
         cargar.gameObject.SetActive(false);
     }
