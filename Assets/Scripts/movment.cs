@@ -28,6 +28,8 @@ public class movment : MonoBehaviour
     private float yRotation = 0.0f;
     public bool isPaused;
 
+    Transform spawnPoint;
+
     private void Awake()
     {
         if (FindObjectsOfType<movment>().Length > 1)
@@ -49,7 +51,11 @@ public class movment : MonoBehaviour
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
         cam3 = GameObject.Find("/MainCamera");
+        player.camGameOver = GameObject.Find("/cameraGameOver");
+        player.camGameOver.SetActive(false);
         player.cam3 = cam3;
+        spawnPoint = GameObject.Find("/SpawnPoint").GetComponent<Transform>();
+        player.transform.position = spawnPoint.position;
     }
     void Start()
     {
