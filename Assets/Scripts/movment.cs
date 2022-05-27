@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class movment : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class movment : MonoBehaviour
 
     public GameObject cam3;
     public GameObject cam1;
-    private GameObject cap;
+    public GameObject cap;
 
     public PlayerController player;
     public bool primeraPersona;
@@ -27,6 +28,29 @@ public class movment : MonoBehaviour
     private float yRotation = 0.0f;
     public bool isPaused;
 
+    private void Awake()
+    {
+        if (FindObjectsOfType<movment>().Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+    void OnEnable()
+    {
+        Debug.Log("OnEnable called");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+        cam3 = GameObject.Find("/MainCamera");
+        player.cam3 = cam3;
+    }
     void Start()
     {
         //tuto = GetComponent<AudioSource>();

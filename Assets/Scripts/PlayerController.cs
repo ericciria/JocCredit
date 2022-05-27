@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameOver;
 
+    private movment movement;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -93,6 +95,7 @@ public class PlayerController : MonoBehaviour
         gameOver = GameObject.Find("Player/gameOver");
         pistola = GameObject.Find("Player/Body/pistola");
         gameOver.SetActive(false);
+        movement = GetComponentInParent<movment>();
 
     }
 
@@ -197,6 +200,11 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
+        var rotationVector = transform.rotation.eulerAngles;
+        rotationVector.x = 0;
+        transform.rotation = Quaternion.Euler(rotationVector);
+        movement.cap.SetActive(true);
+
         isDead = true;
         camGameOver.SetActive(true);
         camGameOver.GetComponent<cameraPlay>().start = true;
