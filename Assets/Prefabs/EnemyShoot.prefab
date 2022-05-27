@@ -280,7 +280,7 @@ MonoBehaviour:
   comprovar: 0
   vida: 5
   maxVida: 5
-  sang: {fileID: 0}
+  sang: {fileID: 8665045147087881313}
   rb: {fileID: 0}
   sliderhealth: {fileID: 0}
 --- !u!1 &4146627091253986545
@@ -308,13 +308,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4146627091253986545}
-  m_LocalRotation: {x: -0, y: -0.6388064, z: -0, w: 0.7693676}
-  m_LocalPosition: {x: -0.13889852, y: 0.046126258, z: -0.008042928}
-  m_LocalScale: {x: 0.0736976, y: 0.0736976, z: 0.0368488}
+  m_LocalRotation: {x: -0.177304, y: 0.00000026822096, z: 0.033163063, w: 0.9835973}
+  m_LocalPosition: {x: 0.0014, y: 0.039099988, z: 0.0074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3322878802388247885}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -20.413, y: -0.719, z: 3.992}
 --- !u!199 &3490056999993746857
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -898,7 +898,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -1.5707963
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2

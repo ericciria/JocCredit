@@ -64,7 +64,7 @@ MonoBehaviour:
   completedRoom: 0
   finished: 0
   illa: {fileID: 4611648933760991887}
-  enemyPrefab1: {fileID: 5866315331279647791, guid: db51474f7188337429bce5ba2e9e32d6, type: 3}
+  enemyPrefab1: {fileID: 2565953590090439369, guid: c31325fafcb7b9a41a9286287be86bc3, type: 3}
   enemyPrefab2: {fileID: 2690597341181165559, guid: 4814940d72e93fa489918a0182adb95f, type: 3}
   enemyPrefab3: {fileID: 0}
   enemies: []
@@ -83,6 +83,64 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5073298790602145349, guid: 940401cba4951f14aaa9e362a87e098c, type: 3}
+--- !u!1 &8039005946796892700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3697169418318264789}
+  - component: {fileID: 2349309752166006513}
+  - component: {fileID: 4149179480559601476}
+  m_Layer: 0
+  m_Name: ImpedirSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3697169418318264789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039005946796892700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.273, y: 0.094, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3437639155100547552}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2349309752166006513
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039005946796892700}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4149179480559601476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039005946796892700}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.1, z: 0.1}
+  m_Center: {x: 0.3, y: -0.34, z: 0}
 --- !u!1001 &2899838653365981887
 PrefabInstance:
   m_ObjectHideFlags: 0

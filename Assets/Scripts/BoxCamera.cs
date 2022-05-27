@@ -62,6 +62,7 @@ public class BoxCamera : MonoBehaviour
             if (enemyPrefab1 != null)
             {
                 enemies[i] = SpawnEnemy(enemyPrefab1).GetComponent<enemigo>();
+                enemies[i].illa = this;
             }
             i++;
         }
