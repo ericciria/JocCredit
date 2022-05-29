@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class movment : MonoBehaviour
 {
-    AudioSource tuto;
     public int vida;
     private Vector2 moveInput;
     public float speedH = 2.0f;
@@ -22,11 +21,10 @@ public class movment : MonoBehaviour
     public PlayerController player;
     public bool primeraPersona;
     Ray ray;
-    RaycastHit hit;
 
     private float xRotation = 0.0f;
     private float yRotation = 0.0f;
-    public bool isPaused;
+    public bool isPaused, destroy;
 
     Transform spawnPoint;
 
@@ -41,22 +39,8 @@ public class movment : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    void OnEnable()
-    {
-        Debug.Log("OnEnable called");
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
-        cam3 = GameObject.Find("/MainCamera");
-        player.camGameOver = GameObject.Find("/cameraGameOver");
-        player.camGameOver.SetActive(false);
-        player.cam3 = cam3;
-        spawnPoint = GameObject.Find("/SpawnPoint").GetComponent<Transform>();
-        player.transform.position = spawnPoint.position;
-    }
+
+    
     void Start()
     {
         //tuto = GetComponent<AudioSource>();
@@ -67,6 +51,28 @@ public class movment : MonoBehaviour
         player = transform.gameObject.GetComponentInChildren<PlayerController>();
         cap = GameObject.Find("/Player/Body/Cube");
         isPaused = false;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        cam3 = GameObject.Find("/MainCamera");
+        player.cam3 = cam3;
+        spawnPoint = GameObject.Find("/SpawnPoint").GetComponent<Transform>();
+        player.lastPosition = spawnPoint.position;
+        player.transform.position = spawnPoint.position;
+        if (scene.name.Equals("play"))
+        {
+            isPaused = true;
+        }
+        else
+        {
+            isPaused = false;
+            player.mira.SetActive(true);
+        }
+        
+
     }
 
     void Update()
@@ -158,7 +164,10 @@ public class movment : MonoBehaviour
 
     private void FirstPersonMovement()
     {
-        cam3.SetActive(false);
+        if (cam3 != null)
+        {
+            cam3.SetActive(false);
+        }
         cam1.SetActive(true);
 
 

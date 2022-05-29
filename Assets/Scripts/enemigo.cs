@@ -71,7 +71,6 @@ public class enemigo : MonoBehaviour
         {
             //estarAlerta = Physics.CheckSphere(transform.position, rangoAlerta, capaDelJugador);
             estarAlerta = Physics.CheckSphere(illa.transform.position, rangoAlerta*2.5f, capaDelJugador);
-            Debug.LogWarning(illa);
             estarAprop = Physics.CheckSphere(transform.position, rangoAprop, capaDelJugador);
             if (estarAlerta && !estarAprop)
             {
@@ -96,6 +95,7 @@ public class enemigo : MonoBehaviour
         else
         {
             anim.SetBool("perseguir", false);
+            so.Stop();
         }
 
     }

@@ -13,7 +13,6 @@ public class cameraPlay : MonoBehaviour
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (start)

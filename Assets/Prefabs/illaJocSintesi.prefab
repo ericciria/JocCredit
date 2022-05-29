@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1772416470}
   - component: {fileID: 1772416472}
   - component: {fileID: 1772416471}
+  - component: {fileID: 2226224740210762499}
   m_Layer: 0
   m_Name: Box
   m_TagString: terrain
@@ -69,6 +70,19 @@ MonoBehaviour:
   enemyPrefab3: {fileID: 0}
   enemies: []
   enemies2: []
+--- !u!114 &2226224740210762499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772416469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a663cecc18211fc458b2420d0699a27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GUID: 
 --- !u!64 &334560456
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -109,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8039005946796892700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.273, y: 0.094, z: 0}
+  m_LocalPosition: {x: -1.274, y: 0.094, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3437639155100547552}
@@ -126,7 +140,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4, z: 0.1}
+  m_Size: {x: 0.4, y: 0.3, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &4149179480559601476
 BoxCollider:

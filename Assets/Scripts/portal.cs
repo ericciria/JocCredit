@@ -31,7 +31,6 @@ public class portal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Hola");
             tuto.Pause();
         }
         //tuto.Pause();
