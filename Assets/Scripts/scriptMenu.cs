@@ -32,8 +32,14 @@ public class scriptMenu : MonoBehaviour
         {
             continuar.gameObject.SetActive(false);
         }
-        tornar.gameObject.SetActive(false);
-        cargar.gameObject.SetActive(false);
+        if (tornar != null)
+        {
+            tornar.gameObject.SetActive(false);
+        }
+        if (cargar != null)
+        {
+            cargar.gameObject.SetActive(false);
+        }
     }
 
 

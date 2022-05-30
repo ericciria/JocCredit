@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BoxCamera : MonoBehaviour
+public class BoxCamera : MonoBehaviour, IsSaveable
 {
     [SerializeField] Camera camera;
     [SerializeField] Transform player;
@@ -33,8 +33,13 @@ public class BoxCamera : MonoBehaviour
         cameraOnPlayer = true;
         checkingIfClear = false;
         canCheck = false;
-        camera = GameObject.Find("MainCamera").GetComponent<Camera>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (GameObject.Find("MainCamera") != null){
+            camera = GameObject.Find("MainCamera").GetComponent<Camera>();
+        }
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         if (GetComponentInParent<MeshRenderer>() != null)
         {
             illa = GetComponentInParent<MeshRenderer>();
@@ -47,50 +52,53 @@ public class BoxCamera : MonoBehaviour
             //walls.SetActive(false);
         }
 
-        completedRoom = false;
-
-        // Spawnejar zombies, entre 1 i 5
-        int randomNumber = Random.Range(1, 5);
-        if (SceneManager.GetActiveScene().name.Equals("Nivell2")) { }
+        if (!completedRoom)
         {
-            randomNumber *= 2;
-        }
-        int i = 0;
-        enemies = new enemigo[randomNumber];
-        while (i < randomNumber)
-        {
-            if (enemyPrefab1 != null)
+            // Spawnejar zombies, entre 1 i 5
+            int randomNumber = Random.Range(1, 5);
+            if (SceneManager.GetActiveScene().name.Equals("Nivell2")) { }
             {
-                enemies[i] = SpawnEnemy(enemyPrefab1).GetComponent<enemigo>();
-                enemies[i].illa = this;
+                randomNumber *= 2;
             }
-            i++;
-        }
-
-        // Spawnejar tio que dispara, entre 1 i 5
-        randomNumber = Random.Range(1, 5);
-        if (SceneManager.GetActiveScene().name.Equals("Nivell2")) { }
-        {
-            randomNumber *= 2;
-        }
-        i = 0;
-        enemies2 = new enemyshoot[randomNumber];
-        while (i < randomNumber)
-        {
-            if (enemyPrefab1 != null)
+            int i = 0;
+            enemies = new enemigo[randomNumber];
+            while (i < randomNumber)
             {
-                enemies2[i] = SpawnEnemy(enemyPrefab2).GetComponent<enemyshoot>();
+                if (enemyPrefab1 != null)
+                {
+                    enemies[i] = SpawnEnemy(enemyPrefab1).GetComponent<enemigo>();
+                    enemies[i].illa = this;
+                }
+                i++;
             }
-            i++;
-        }
 
+            // Spawnejar tio que dispara, entre 1 i 5
+            randomNumber = Random.Range(1, 5);
+            if (SceneManager.GetActiveScene().name.Equals("Nivell2")) { }
+            {
+                randomNumber *= 2;
+            }
+            i = 0;
+            enemies2 = new enemyshoot[randomNumber];
+            while (i < randomNumber)
+            {
+                if (enemyPrefab1 != null)
+                {
+                    enemies2[i] = SpawnEnemy(enemyPrefab2).GetComponent<enemyshoot>();
+                }
+                i++;
+            }
+        }
     }
 
     private void Update()
     {
         if (moure)
         {
-            camera.transform.position = Vector3.MoveTowards(camera.transform.position, target, step);
+            if (camera != null)
+            {
+                camera.transform.position = Vector3.MoveTowards(camera.transform.position, target, step);
+            }
         }
         else if (!cameraOnPlayer)
         {
@@ -123,7 +131,6 @@ public class BoxCamera : MonoBehaviour
             }
             other.gameObject.GetComponent<PlayerController>().playerInBox = true;
             moure = true;
-            Debug.Log("Entering");
             target = new Vector3(transform.position.x, transform.position.y + 15, transform.position.z - 15);
 
             cameraOnPlayer = false;
@@ -134,20 +141,7 @@ public class BoxCamera : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && completedRoom)
         {
-            foreach (enemigo enemy in enemies)
-            {
-                if (enemy != null)
-                {
-                    Destroy(enemy.gameObject);
-                }
-            }
-            foreach (enemyshoot enemy in enemies2)
-            {
-                if (enemy != null)
-                {
-                    Destroy(enemy.gameObject);
-                }
-            }
+            ClearEnemies();
         }
     }
 
@@ -184,6 +178,7 @@ public class BoxCamera : MonoBehaviour
         }
         checkingIfClear = false;
     }
+
 
     public void restoreCamera()
     {
@@ -239,5 +234,32 @@ public class BoxCamera : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         //Gizmos.DrawWireSphere(transform.position, illa.transform.localScale.x*1.2f);
+    }
+    private void ClearEnemies()
+    {
+        foreach (enemigo enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                Destroy(enemy.gameObject);
+            }
+        }
+        foreach (enemyshoot enemy in enemies2)
+        {
+            if (enemy != null)
+            {
+                Destroy(enemy.gameObject);
+            }
+        }
+    }
+
+    public object CaptureState()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RestoreState(object data)
+    {
+        throw new System.NotImplementedException();
     }
 }

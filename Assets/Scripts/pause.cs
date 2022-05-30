@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class pause : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class pause : MonoBehaviour
     private AudioSource[] allAudioSources ;
     PlayerController player;
     movment mov;
+    Scene escena;
 
     private void Start()
     {
@@ -17,29 +19,38 @@ public class pause : MonoBehaviour
         player = GameObject.Find("Player/Body").GetComponent<PlayerController>();
         pauseMenu.SetActive(false);
         mov = GameObject.Find("/Player").GetComponent<movment>();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        escena = SceneManager.GetActiveScene();
     }
-
-
-  
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        escena = scene;
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            if (!player.isDead)
+            if (!escena.name.Equals("play"))
             {
-                isPaused = !isPaused;
-                if (isPaused)
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                if (!player.isDead)
                 {
-                    StopAllAudio();
+                    isPaused = !isPaused;
+                    if (isPaused)
+                    {
+                        StopAllAudio();
+                    }
+                    Time.timeScale = isPaused ? 0 : 1;
+                    pauseMenu.SetActive(isPaused);
+                    mov.isPaused = isPaused;
                 }
-                Time.timeScale = isPaused ? 0 : 1;
-                pauseMenu.SetActive(isPaused);
-                mov.isPaused = isPaused;
             }
-            
         }
     }
 

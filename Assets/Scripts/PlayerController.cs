@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
     public Image sliderhealth;
 
     private bool canCheck;
-    public Vector3 lastPosition;
+    public Vector3 lastPosition, lastPosition2;
 
     public GameObject gameOver;
 
@@ -64,7 +65,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-       
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         health = maxHealth;
         sliderhealth.fillAmount = 1;
         r = bloodEfect.color.r;
@@ -77,16 +79,11 @@ public class PlayerController : MonoBehaviour
         
 
         baseSpeed = 5;
-        speed = baseSpeed;
         baseAttack = 1;
-        attack = baseAttack;
         baseShootRate = 1;
-        shootRate = baseShootRate;
         baseShootSpeed = 10;
-        shootSpeed = baseShootSpeed;
         baseMaxHealth = 2;
-        maxHealth = baseMaxHealth;
-        health = maxHealth;
+        SetBaseStats();
 
         playerInBox = false;
         canCheck = true;
@@ -97,6 +94,24 @@ public class PlayerController : MonoBehaviour
         gameOver.SetActive(false);
         movement = GetComponentInParent<movment>();
 
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        camGameOver = GameObject.Find("/cameraGameOver");
+        if (camGameOver != null)
+        {
+            camGameOver.SetActive(false);
+        }
+        gameOver.SetActive(false);
+        if (isDead)
+        {
+            isDead = false;
+            SetBaseStats();
+            anim.Play("idle", -1, 0f);
+            pistola.SetActive(true);
+            sliderhealth.fillAmount = (float)health / maxHealth;
+        }        
     }
 
     void Update()
@@ -184,6 +199,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator CheckPosition()
     {
         canCheck = false;
+        lastPosition2 = lastPosition;
         lastPosition = transform.position;
         yield return new WaitForSeconds(2);
         canCheck = true;
@@ -216,9 +232,15 @@ public class PlayerController : MonoBehaviour
         mira.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-
     }
-
+    public void SetBaseStats()
+    {
+        speed = baseSpeed;
+        attack = baseAttack;
+        shootRate = baseShootRate;
+        shootSpeed = baseShootSpeed;
+        maxHealth = baseMaxHealth;
+        health = maxHealth;
+    }
 
 }
