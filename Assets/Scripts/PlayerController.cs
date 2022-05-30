@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.LogWarning(scene.name);
         camGameOver = GameObject.Find("/cameraGameOver");
         if (camGameOver != null)
         {

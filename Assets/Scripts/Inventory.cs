@@ -9,9 +9,15 @@ public class Inventory : MonoBehaviour, IsSaveable
     public int maxHealth, attack;
     public float shootSpeed, shootRate, speed;
     public Vector3 tamanyBala;
+
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
         player = gameObject.GetComponent<PlayerController>();
+
         shootSpeed = 0;
         shootRate = 0;
         speed = 0;
@@ -107,13 +113,46 @@ public class Inventory : MonoBehaviour, IsSaveable
         tamanyBala = new Vector3(0, 0, 0);
     }
 
+    [System.Serializable]
+    struct InventoryData
+    {
+        public int maxHealth, attack;
+        public float shootSpeed, shootRate, speed;
+        public float[] tamanyBala;
+        public float[] playerPos;
+    }
+
     public object CaptureState()
     {
-        throw new System.NotImplementedException();
+        InventoryData data;
+        data.maxHealth = maxHealth;
+        data.attack = attack;
+        data.shootSpeed = shootSpeed;
+        data.shootRate = shootRate;
+        data.speed = speed;
+        data.tamanyBala = new float[3];
+        data.tamanyBala[0] = tamanyBala.x;
+        data.tamanyBala[1] = tamanyBala.y;
+        data.tamanyBala[2] = tamanyBala.z;
+        data.playerPos = new float[3];
+        data.playerPos[0] = player.transform.position.x;
+        data.playerPos[1] = player.transform.position.y;
+        data.playerPos[2] = player.transform.position.z;
+
+        return data;
     }
 
     public void RestoreState(object data)
     {
-        throw new System.NotImplementedException();
+        player = gameObject.GetComponent<PlayerController>();
+
+        InventoryData dataLoaded = (InventoryData)data;
+        maxHealth = dataLoaded.maxHealth;
+        attack = dataLoaded.attack;
+        shootSpeed = dataLoaded.shootSpeed;
+        shootRate = dataLoaded.shootRate;
+        speed = dataLoaded.speed;
+        player.transform.position = new Vector3(dataLoaded.playerPos[0], dataLoaded.playerPos[1], dataLoaded.playerPos[2]);
+        UpdatePlayer(0, 0, 0, 0, 0);
     }
 }

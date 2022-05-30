@@ -13,6 +13,7 @@ public class scriptMenu : MonoBehaviour
     public Button opcions;
     public Button tornar;
     public Button cargar;
+    public SaveSystemComplet ss;
 
 
     public void Play()
@@ -24,6 +25,10 @@ public class scriptMenu : MonoBehaviour
         tornar.gameObject.SetActive(true);
         cargar.gameObject.SetActive(true);
 
+    }
+    private void Awake()
+    {
+        ss = GameObject.Find("/SaveSystem").GetComponent<SaveSystemComplet>();
     }
 
     void Start()
@@ -57,10 +62,19 @@ public class scriptMenu : MonoBehaviour
     {
         SceneManager.LoadScene("provesEric");
     }
+    public void ActivarMapaCarregar()
+    {
+        ss.Load();
+    }
 
 
     public void ActivarMenu()
     {
+        SceneManager.LoadScene("play");
+    }
+    public void ActivarMenuSave()
+    {
+        ss.Save();
         SceneManager.LoadScene("play");
     }
 

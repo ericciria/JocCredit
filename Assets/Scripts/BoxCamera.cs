@@ -56,7 +56,6 @@ public class BoxCamera : MonoBehaviour, IsSaveable
         {
             // Spawnejar zombies, entre 1 i 5
             int randomNumber = Random.Range(1, 5);
-            Debug.LogWarning("Random1: " + randomNumber);
             if (SceneManager.GetActiveScene().name.Equals("nivell2")) 
             {
                 randomNumber *= 2;
@@ -72,7 +71,6 @@ public class BoxCamera : MonoBehaviour, IsSaveable
                 }
                 i++;
             }
-            Debug.LogWarning("Random2: " + randomNumber + SceneManager.GetActiveScene().name);
 
             // Spawnejar tio que dispara, entre 1 i 5
             randomNumber = Random.Range(1, 5);
@@ -256,13 +254,27 @@ public class BoxCamera : MonoBehaviour, IsSaveable
         }
     }
 
+    [System.Serializable]
+    struct BoxSave
+    {
+        public bool completedRoom;
+    }
+
     public object CaptureState()
     {
-        throw new System.NotImplementedException();
+        BoxSave data;
+        data.completedRoom = completedRoom;
+
+        return data;
     }
 
     public void RestoreState(object data)
     {
-        throw new System.NotImplementedException();
+        BoxSave dataLoaded = (BoxSave)data;
+        if (dataLoaded.completedRoom)
+        {
+            roomFinished();
+            ClearEnemies();
+        }
     }
 }
