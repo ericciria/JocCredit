@@ -407,6 +407,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2447416106514645311, guid: 48d05b72780c5fa49bee9816aa88cc2d, type: 3}
+      propertyPath: m_Text
+      value: "Opcions Gr\xE0fiques"
+      objectReference: {fileID: 0}
     - target: {fileID: 2447416106713785132, guid: 48d05b72780c5fa49bee9816aa88cc2d, type: 3}
       propertyPath: m_Text
       value: Aplicar
