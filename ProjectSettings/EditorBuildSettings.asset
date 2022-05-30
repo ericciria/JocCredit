@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/play.unity
+    guid: 89a1b62657603f048ba31d1a3bd103bd
+  - enabled: 1
     path: Assets/Scenes/provesEric.unity
     guid: c97df487c9ba85b46853b94132f4f62d
   - enabled: 1
@@ -14,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/nivell2.unity
     guid: baa62ade6b50e2c44b7bec820dabd813
-  - enabled: 1
-    path: Assets/Scenes/play.unity
-    guid: 89a1b62657603f048ba31d1a3bd103bd
   - enabled: 1
     path: Assets/Scenes/gamewin.unity
     guid: 4e4fab6380c7f9f4caa28b69ac7ba1d4
