@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
         baseAttack = 1;
         baseShootRate = 1;
         baseShootSpeed = 10;
-        baseMaxHealth = 2;
+        baseMaxHealth = 5;
         SetBaseStats();
 
         playerInBox = false;

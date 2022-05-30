@@ -56,7 +56,8 @@ public class BoxCamera : MonoBehaviour, IsSaveable
         {
             // Spawnejar zombies, entre 1 i 5
             int randomNumber = Random.Range(1, 5);
-            if (SceneManager.GetActiveScene().name.Equals("nivell2")) { }
+            Debug.LogWarning("Random1: " + randomNumber);
+            if (SceneManager.GetActiveScene().name.Equals("nivell2")) 
             {
                 randomNumber *= 2;
             }
@@ -71,10 +72,11 @@ public class BoxCamera : MonoBehaviour, IsSaveable
                 }
                 i++;
             }
+            Debug.LogWarning("Random2: " + randomNumber + SceneManager.GetActiveScene().name);
 
             // Spawnejar tio que dispara, entre 1 i 5
             randomNumber = Random.Range(1, 5);
-            if (SceneManager.GetActiveScene().name.Equals("nivell2")) { }
+            if (SceneManager.GetActiveScene().name.Equals("nivell2"))
             {
                 randomNumber *= 2;
             }

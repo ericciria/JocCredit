@@ -64,4 +64,9 @@ public class scriptMenu : MonoBehaviour
         SceneManager.LoadScene("play");
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
 }
