@@ -98,10 +98,15 @@ public class PlayerController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.LogWarning(scene.name);
         camGameOver = GameObject.Find("/cameraGameOver");
         if (camGameOver != null)
         {
             camGameOver.SetActive(false);
+        }
+        if (scene.name.Equals("play") || scene.name.Equals("gamewin"))
+        {
+            mira.SetActive(false);
         }
         gameOver.SetActive(false);
         if (isDead)

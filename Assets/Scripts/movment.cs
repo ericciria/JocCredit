@@ -71,7 +71,11 @@ public class movment : MonoBehaviour
             isPaused = false;
             player.mira.SetActive(true);
         }
-        
+        if (scene.name.Equals("gamewin"))
+        {
+            Destroy(gameObject);
+        }
+
 
     }
 
