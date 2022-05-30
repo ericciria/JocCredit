@@ -49,6 +49,12 @@ public class Inventory : MonoBehaviour, IsSaveable
         maxHealth += maxHealth1;
         tamanyBala += tamanyBala1;
 
+        if (maxHealth1 > 0)
+        {
+            player.health += maxHealth1;
+            player.sliderhealth.fillAmount = (float)player.health / player.maxHealth;
+        }
+
         UpdatePlayer(shootSpeed, shootRate, speed, attack, maxHealth);
 
         if (player.shootRate < 0.4)

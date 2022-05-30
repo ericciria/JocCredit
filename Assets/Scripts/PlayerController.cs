@@ -246,6 +246,7 @@ public class PlayerController : MonoBehaviour
         shootSpeed = baseShootSpeed;
         maxHealth = baseMaxHealth;
         health = maxHealth;
+        sliderhealth.fillAmount = (float)health / maxHealth;
     }
 
 }
