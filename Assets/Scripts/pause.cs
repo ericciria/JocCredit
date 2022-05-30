@@ -29,13 +29,14 @@ public class pause : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         escena = scene;
+        pauseMenu.SetActive(false);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!escena.name.Equals("play"))
+            if (!escena.name.Equals("play") && !escena.name.Equals("gamewin"))
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
