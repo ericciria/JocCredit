@@ -11,10 +11,12 @@ public class ItemInfo : MonoBehaviour, IsSaveable
     private Inventory player;
     private PlayerController playerC;
     private bool hasBeenPicked, hasBeenDestroyed;
+    Vector3 originalPosition;
 
     private void Start()
     {
         tuto = GetComponentInChildren<AudioSource>();
+        originalPosition = transform.position;
     }
 
 
@@ -26,7 +28,7 @@ public class ItemInfo : MonoBehaviour, IsSaveable
         }
         
         float y = Mathf.PingPong(Time.time, 4)/4;
-        transform.position = new Vector3(transform.position.x, y+1, transform.position.z);
+        transform.position = new Vector3(originalPosition.x, originalPosition.y + y, originalPosition.z);
 
         if (hasBeenPicked)
         {
