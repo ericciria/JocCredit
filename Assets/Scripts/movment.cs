@@ -53,6 +53,7 @@ public class movment : MonoBehaviour
         cam3 = GameObject.Find("/MainCamera");
         player.camGameOver = GameObject.Find("/cameraGameOver");
         player.camGameOver.SetActive(false);
+        player.gameOver.SetActive(false);
         player.cam3 = cam3;
         spawnPoint = GameObject.Find("/SpawnPoint").GetComponent<Transform>();
         player.transform.position = spawnPoint.position;
