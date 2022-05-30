@@ -142,6 +142,7 @@ public class BoxCamera : MonoBehaviour, IsSaveable
         if (other.gameObject.tag == "Player" && completedRoom)
         {
             ClearEnemies();
+            restoreCamera();
         }
     }
 
